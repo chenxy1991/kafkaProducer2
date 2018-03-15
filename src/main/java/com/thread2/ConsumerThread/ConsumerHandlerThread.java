@@ -26,18 +26,16 @@ public class ConsumerHandlerThread implements Runnable {
 
     private final ConsumerRecords<String, String> records;
     public static BatchPoints batchPoints = null;
-    private static InfluxDB influxDB = null;
     public static String dbname = "cxy";
     private static Logger log = LoggerFactory.getLogger(ConsumerHandlerThread.class);
     public static DBOperation operation=new DBOperation();
-    private final Consumer<String, String> consumer;
+    private static InfluxDB influxDB = DBOperation.connectDB(3);
+   // private final Consumer<String, String> consumer;
     private final Map<TopicPartition, OffsetAndMetadata> offsets;
     private Result result;
 
-    public ConsumerHandlerThread(ConsumerRecords<String, String> records, InfluxDB influxDB,Consumer<String, String> consumer,Map<TopicPartition, OffsetAndMetadata> offsets,Result result) {
-        this.records = records;
-        this.influxDB=influxDB;
-        this.consumer=consumer;
+    public ConsumerHandlerThread(ConsumerRecords<String, String> records,Map<TopicPartition, OffsetAndMetadata> offsets,Result result) {
+        this.records = records;//  this.influxDB=influxDB;this.consumer=consumer;
         this.offsets=offsets;
         this.result=result;
     }
@@ -48,8 +46,6 @@ public class ConsumerHandlerThread implements Runnable {
     public void run() {
         long soffset = 0;
         for (TopicPartition partition : records.partitions()) {
-            System.out.println(consumer.committed(partition));
-            long curoffset = consumer.committed(partition).offset();
             List<ConsumerRecord<String, String>> partitionRecords = records.records(partition);
             List<String> recordList = new ArrayList<String>();
             for (ConsumerRecord<String, String> record : partitionRecords) {
@@ -70,12 +66,10 @@ public class ConsumerHandlerThread implements Runnable {
                             }
                         }
                     }
-                    /*else
-                        offsets.put(partition,consumer.committed(partition));*/
                 }
             } catch (Exception e) {
-                if (soffset == -1 && e.getMessage().equals("influxDB批量写入失败")) {
-                    offsets.put(partition, consumer.committed(partition));
+                   // if (soffset == -1 && e.getMessage().equals("influxDB批量写入失败")) {
+                   // offsets.put(partition, consumer.committed(partition));
                     result.setDoneFlag(false);
                     result.setThreadName(Thread.currentThread().getName());
                 }

@@ -6,11 +6,19 @@ public class ConsumerMain {
 
     public static void main(String[] args){
 
-        /*final ConsumerGen consume=new ConsumerGen("cpu");
-        consume.start(2);*/
+        final ConsumerGen consume=new ConsumerGen("cpu");
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            @Override
+            public void run()
+            {
+                System.out.println("Execute Hook.....");
+                consume.stop();
+            }
+        }));
+        consume.start(2);
 
 
-        final testThread thread=new testThread();
+        /*final testThread thread=new testThread();
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run()
@@ -19,7 +27,7 @@ public class ConsumerMain {
                 thread.stop();
             }
         }));
-        thread.start(2);
+        thread.start(2);*/
 
 
 

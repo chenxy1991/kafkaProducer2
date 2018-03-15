@@ -23,7 +23,7 @@ public class testThread {
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
-           System.exit(0);
+          // System.exit(0);
            System.out.println("i am ok");
         }
         System.exit(0);
