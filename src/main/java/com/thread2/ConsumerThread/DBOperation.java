@@ -14,13 +14,30 @@ import java.util.concurrent.TimeUnit;
 
 public class DBOperation {
 
+    private static DBOperation operation=null;
     public static BatchPoints batchPoints = null;
-    private static InfluxDB influxDB = null;
+    private InfluxDB influxDB = null;
     public static String dbname = "cxy";
     private static Logger log = LoggerFactory.getLogger(DBOperation.class);
 
+    private DBOperation(){
+        influxDB=connectDB(3);
+    }
+
+    private static class DBOperationHolder{
+        private static DBOperation operation= new DBOperation();
+    }
+
+    public static DBOperation getInstance(){
+        return DBOperationHolder.operation;
+    }
+
+    public InfluxDB getInfluxDB() {
+        return influxDB;
+    }
+
     public synchronized long InsertToInfluxdb(List<String> records) throws Exception {
-        long flag = 0;
+       // long flag = 0;
         JSONObject record = JSONObject.parseObject(records.get(0).split(",")[0]);
         long initoffset=Long.valueOf(records.get(0).split(",")[1]);
         long lastoffset=0L;
@@ -42,9 +59,10 @@ public class DBOperation {
         QueryResult rs = null;
         try {
             influxDB.write(batchPoints);
-            flag=lastoffset;
+           // flag=lastoffset;
         } catch (Exception e) {
-            flag = -1L;
+           // flag = -1L;
+            lastoffset=-1L;
             e.printStackTrace();
             throw new Exception("influxDB批量写入失败");
         }
@@ -52,7 +70,7 @@ public class DBOperation {
         batchPoints = null;
         rs = query("select count(*) from cpu");
         System.out.println("result:" + rs.toString());
-        return flag;
+        return lastoffset;
     }
 
     public QueryResult query(String command) {
@@ -70,7 +88,7 @@ public class DBOperation {
         return tt;
     }
 
-    public static InfluxDB connectDB(int times) {
+    private InfluxDB connectDB(int times) {
         try {
             influxDB=connect();
         } catch (SQLException e) {
@@ -90,7 +108,7 @@ public class DBOperation {
         return influxDB;
     }
 
-    public static InfluxDB connect() throws SQLException {
+    private InfluxDB connect() throws SQLException {
         influxDB = InfluxDBFactory.connect("http://10.19.156.37:8086");
         Pong pong = influxDB.ping();
         if (pong != null) {

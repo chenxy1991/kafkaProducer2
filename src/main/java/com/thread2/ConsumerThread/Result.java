@@ -1,24 +1,21 @@
 package com.thread2.ConsumerThread;
 
+import org.apache.kafka.clients.consumer.OffsetAndMetadata;
+import org.apache.kafka.common.TopicPartition;
+
+import java.util.Map;
+import java.util.concurrent.LinkedBlockingQueue;
+
 public class Result {
 
-    public boolean doneFlag=true;
-    public String threadName;
+    public LinkedBlockingQueue offsetQueue = new LinkedBlockingQueue<Map<TopicPartition, OffsetAndMetadata>>();
 
-    public String getThreadName() {
-        return threadName;
+    public LinkedBlockingQueue getOffsetQueue() {
+        return offsetQueue;
     }
 
-    public void setThreadName(String threadName) {
-        this.threadName = threadName;
-    }
-
-    public boolean isDoneFlag() {
-        return doneFlag;
-    }
-
-    public void setDoneFlag(boolean doneFlag) {
-        this.doneFlag = doneFlag;
+    public void setOffsetQueue(LinkedBlockingQueue offsetQueue) {
+        this.offsetQueue = offsetQueue;
     }
 
 }

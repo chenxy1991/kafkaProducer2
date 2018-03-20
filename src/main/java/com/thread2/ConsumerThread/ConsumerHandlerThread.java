@@ -20,27 +20,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 public class ConsumerHandlerThread implements Runnable {
 
     private final ConsumerRecords<String, String> records;
-    public static BatchPoints batchPoints = null;
-    public static String dbname = "cxy";
-    private static Logger log = LoggerFactory.getLogger(ConsumerHandlerThread.class);
-    public static DBOperation operation=new DBOperation();
-    private static InfluxDB influxDB = DBOperation.connectDB(3);
-   // private final Consumer<String, String> consumer;
     private final Map<TopicPartition, OffsetAndMetadata> offsets;
-    private Result result;
+    private final LinkedBlockingQueue<Map<TopicPartition, OffsetAndMetadata>> offsetQueue;
+    Result result;
 
-    public ConsumerHandlerThread(ConsumerRecords<String, String> records,Map<TopicPartition, OffsetAndMetadata> offsets,Result result) {
-        this.records = records;//  this.influxDB=influxDB;this.consumer=consumer;
-        this.offsets=offsets;
-        this.result=result;
+    private static Logger log = LoggerFactory.getLogger(ConsumerHandlerThread.class);
+
+    public ConsumerHandlerThread(ConsumerRecords<String, String> records,Map<TopicPartition, OffsetAndMetadata> offsets, LinkedBlockingQueue offsetQueue) {
+        this.records = records;
+        this.offsets=offsets;//this.result=result;
+        this.offsetQueue=offsetQueue;
     }
-
-
 
     @Override
     public void run() {
@@ -53,34 +49,17 @@ public class ConsumerHandlerThread implements Runnable {
             }
             System.out.println(Thread.currentThread().getName() + "获取数据" + recordList.size() + "条");
             try {
-                soffset = operation.InsertToInfluxdb(recordList);
-                synchronized (offsets) {
-                    if (soffset != -1) {
-                        System.out.println("成功插入influxdb");
-                        if (!offsets.containsKey(partition)) {
-                            offsets.put(partition, new OffsetAndMetadata(soffset + 1));
-                        } else {
-                            long curr = offsets.get(partition).offset();
-                            if (curr <= soffset + 1) {
-                                offsets.put(partition, new OffsetAndMetadata(soffset + 1));
-                            }
-                        }
+                soffset = DBOperation.getInstance().InsertToInfluxdb(recordList);
+                if (soffset != -1) {
+                    long curr = offsets.get(partition).offset();
+                    if (curr <= soffset + 1) {
+                        offsets.put(partition, new OffsetAndMetadata(soffset + 1));
                     }
-                }
-            } catch (Exception e) {
-                   // if (soffset == -1 && e.getMessage().equals("influxDB批量写入失败")) {
-                   // offsets.put(partition, consumer.committed(partition));
-                    result.setDoneFlag(false);
-                    result.setThreadName(Thread.currentThread().getName());
-                }
-            }
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                System.out.println(Thread.currentThread().getName() + "interrupted: " + e);
-                result.setDoneFlag(false);
-                result.setThreadName(Thread.currentThread().getName());
+              }
+            } catch (Exception e1) {
+                e1.printStackTrace();
             }
         }
-    }
+        offsetQueue.add(offsets);
+        }
 }

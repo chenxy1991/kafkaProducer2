@@ -1,5 +1,11 @@
 package com.thread2.ConsumerThread;
 
+import org.apache.kafka.clients.consumer.OffsetAndMetadata;
+import org.apache.kafka.common.TopicPartition;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.*;
 
 public class testThread {
@@ -12,19 +18,19 @@ public class testThread {
     public void start(int threadNum) {
         executor = new ThreadPoolExecutor(threadNum, threadNum, 2L, TimeUnit.SECONDS, new LinkedBlockingDeque<Runnable>(), new ThreadPoolExecutor.CallerRunsPolicy());
         Result result=new Result();
+        LinkedBlockingQueue offsetQueue = new LinkedBlockingQueue<List<String>>();
         while(isRunning) {
             try {
-                Future<Result> future=executor.submit(new hellowordThread(result),result);
-                System.out.println(future.get().isDoneFlag());
+                List<String> offsets = new ArrayList<String>();
+                offsets.add("cxy");
+                executor.submit(new hellowordThread(offsets,offsetQueue));
+                //System.out.println(future.get().isDoneFlag());
             }catch(ArithmeticException e){
                 isRunning=false;
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
             }
-          // System.exit(0);
+           System.out.println("------"+offsetQueue.toString());
            System.out.println("i am ok");
+
         }
         System.exit(0);
 
