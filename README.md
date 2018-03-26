@@ -4,3 +4,4 @@
 1.consumer对于提交offsets的处理
 2.生产者的key改为tags+timestamp，topic为meansurement
 3.在生产者发送record时使用timestamp对分区数取模作为分发到partition的依据
+4.influxdb的获取改为单例模式
