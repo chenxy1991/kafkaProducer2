@@ -13,7 +13,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class hellowordThread implements Runnable {
 
-    Result result;
+    //Result result;
     private final List<String> offsets;
     private final LinkedBlockingQueue<List<String>> offsetQueue;
 

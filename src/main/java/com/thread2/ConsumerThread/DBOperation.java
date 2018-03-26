@@ -1,6 +1,7 @@
 package com.thread2.ConsumerThread;
 
 import com.alibaba.fastjson.JSONObject;
+import org.apache.kafka.common.TopicPartition;
 import org.influxdb.InfluxDB;
 import org.influxdb.InfluxDBFactory;
 import org.influxdb.dto.*;
@@ -36,41 +37,41 @@ public class DBOperation {
         return influxDB;
     }
 
-    public synchronized long InsertToInfluxdb(List<String> records) throws Exception {
-       // long flag = 0;
-        JSONObject record = JSONObject.parseObject(records.get(0).split(",")[0]);
-        long initoffset=Long.valueOf(records.get(0).split(",")[1]);
-        long lastoffset=0L;
+    public synchronized Offset InsertToInfluxdb(List<String> records) throws Exception {
+        Offset result=null;
+        System.out.println("-----" + Thread.currentThread().getName() + ":" + "获取到的数据库连接：" + influxDB);
+        JSONObject record = JSONObject.parseObject(records.get(0).split("&")[0]);
+        long initoffset = Long.valueOf(records.get(0).split("&")[1]);
+        long lastoffset = 0L;
         batchPoints = BatchPoints.database(dbname)
-                      .tag("host", (String) record.get("host"))
-                      .tag("region", (String) record.get("region")).build();
+                .tag("host", (String) record.get("host"))
+                .tag("region", (String) record.get("region")).build();
         for (String ValueAndOffset : records) {
-            System.out.println("-----" + Thread.currentThread().getName()+":"+"获取到的数据库连接："+influxDB);
-            String content=ValueAndOffset.split(",")[0];
-            lastoffset=Long.valueOf(ValueAndOffset.split(",")[1]);
+            String content = ValueAndOffset.split("&")[0];
+            System.out.println(Thread.currentThread().getName()+"记录是 :"+content);
+            lastoffset = Long.valueOf(ValueAndOffset.split("&")[1]);
+            System.out.println(Thread.currentThread().getName()+"记录的offset是 :"+lastoffset);
             JSONObject json = JSONObject.parseObject(content);
-            long tt=transform(content);
+            long tt = transform(content);
             Point point1 = Point.measurement("cpu")
-                       .time(TimeUnit.NANOSECONDS.toNanos(tt), TimeUnit.NANOSECONDS)
-                       .addField("load", Float.parseFloat(json.get("load").toString()))
-                       .build();
+                    .time(TimeUnit.NANOSECONDS.toNanos(tt), TimeUnit.NANOSECONDS)
+                    .addField("load", Float.parseFloat(json.get("load").toString()))
+                    .build();
             batchPoints.point(point1);
         }
         QueryResult rs = null;
         try {
             influxDB.write(batchPoints);
-           // flag=lastoffset;
+            result=new Offset();
+            result.setInitOffset(initoffset);
+            result.setLastOffset(lastoffset);
         } catch (Exception e) {
-           // flag = -1L;
-            lastoffset=-1L;
             e.printStackTrace();
-            throw new Exception("influxDB批量写入失败");
         }
+        System.out.println(Thread.currentThread().getName()+"插入的该批记录的offset初始值为"+result.getInitOffset()+",最后一条记录的偏移值为"+result.getLastOffset());
         log.info("本次批量添加的记录有[{}]条", batchPoints.getPoints().size());
         batchPoints = null;
-        rs = query("select count(*) from cpu");
-        System.out.println("result:" + rs.toString());
-        return lastoffset;
+        return result;
     }
 
     public QueryResult query(String command) {

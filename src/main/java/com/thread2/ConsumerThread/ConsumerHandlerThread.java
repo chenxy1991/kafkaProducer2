@@ -22,44 +22,43 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class ConsumerHandlerThread implements Runnable {
 
     private final ConsumerRecords<String, String> records;
-    private final Map<TopicPartition, OffsetAndMetadata> offsets;
-    private final LinkedBlockingQueue<Map<TopicPartition, OffsetAndMetadata>> offsetQueue;
-    Result result;
-
+    private final Map<TopicPartition, Offset> offsets;
+    private final LinkedBlockingQueue<Map<TopicPartition, Offset>> offsetQueue;
     private static Logger log = LoggerFactory.getLogger(ConsumerHandlerThread.class);
 
-    public ConsumerHandlerThread(ConsumerRecords<String, String> records,Map<TopicPartition, OffsetAndMetadata> offsets, LinkedBlockingQueue offsetQueue) {
-        this.records = records;
-        this.offsets=offsets;//this.result=result;
-        this.offsetQueue=offsetQueue;
+
+    public ConsumerHandlerThread(ConsumerRecords<String, String> records,Map<TopicPartition, Offset> offsets, LinkedBlockingQueue offsetQueue) {
+       this.records = records;
+       this.offsets=offsets;
+       this.offsetQueue=offsetQueue;
     }
 
     @Override
     public void run() {
-        long soffset = 0;
         for (TopicPartition partition : records.partitions()) {
             List<ConsumerRecord<String, String>> partitionRecords = records.records(partition);
             List<String> recordList = new ArrayList<String>();
             for (ConsumerRecord<String, String> record : partitionRecords) {
-                recordList.add(record.value() + "," + record.offset());
+                recordList.add(record.value() + "&" + record.offset());
             }
             System.out.println(Thread.currentThread().getName() + "获取数据" + recordList.size() + "条");
+            Offset result = null;
             try {
-                soffset = DBOperation.getInstance().InsertToInfluxdb(recordList);
-                if (soffset != -1) {
-                    long curr = offsets.get(partition).offset();
-                    if (curr <= soffset + 1) {
-                        offsets.put(partition, new OffsetAndMetadata(soffset + 1));
-                    }
-              }
-            } catch (Exception e1) {
-                e1.printStackTrace();
+                result = DBOperation.getInstance().InsertToInfluxdb(recordList);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (result != null) {
+                  offsets.put(partition,result);
+                  System.out.println(Thread.currentThread().getName()+"----"+offsets.get(partition).toString());
             }
         }
         offsetQueue.add(offsets);
+        System.out.println(Thread.currentThread().getName()+"执行完后，当前offsetQueue的大小为:"+offsetQueue.size());
         }
 }

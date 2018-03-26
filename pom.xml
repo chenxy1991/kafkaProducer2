@@ -31,6 +31,14 @@
       <version>0.11.0.2</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka -->
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>kafka_2.12</artifactId>
+      <version>0.11.0.1</version>
+    </dependency>
+
+
     <dependency>
         <groupId>org.influxdb</groupId>
         <artifactId>influxdb-java</artifactId>
@@ -104,6 +112,11 @@
       <artifactId>jetty-all</artifactId>
       <version>8.0.4.v20111024</version>
     </dependency>
+      <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <version>RELEASE</version>
+      </dependency>
   </dependencies>
   <build>
     <finalName>kafka</finalName>

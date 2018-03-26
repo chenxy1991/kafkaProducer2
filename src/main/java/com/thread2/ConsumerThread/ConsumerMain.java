@@ -1,5 +1,6 @@
 package com.thread2.ConsumerThread;
 
+import com.cxy.Consumer.KConsumer;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.influxdb.InfluxDB;
@@ -13,10 +14,10 @@ public class ConsumerMain {
     public static void main(String[] args) {
 
         final Consumer<String, String> consumer;
-        Properties props = getConsumerProperties();
+        Properties props =getConsumerProperties();
         consumer = new KafkaConsumer<String, String>(props);
 
-        InfluxDB influxDB = DBOperation.getInstance().getInfluxDB();
+        final InfluxDB influxDB = DBOperation.getInstance().getInfluxDB();
 
         final ConsumerGen consume = new ConsumerGen("cpu", influxDB, consumer);
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
@@ -40,14 +41,13 @@ public class ConsumerMain {
                 thread.stop();
             }
         }));
-        thread.start(2);
-    }*/
+        thread.start(2);*/
     }
 
     public static Properties getConsumerProperties() {
         Properties props = new Properties();
         try {
-            InputStream in = ConsumerGen.class.getResourceAsStream("/consumer.properties");
+            InputStream in = ConsumerMain.class.getResourceAsStream("/consumer.properties");
             props.load(in);
         } catch (Exception e) {
             e.printStackTrace();

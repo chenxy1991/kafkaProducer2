@@ -4,7 +4,7 @@
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="kafka" />
+          <element id="module-output" name="kafkaProducer2" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.4" />
@@ -48,7 +48,7 @@
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/kafka/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="kafka/web/Web" />
+      <element id="javaee-facet-resources" facet="kafkaProducer2/web/Web" />
     </root>
   </artifact>
 </component>

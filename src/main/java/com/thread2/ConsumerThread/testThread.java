@@ -1,11 +1,8 @@
 package com.thread2.ConsumerThread;
 
-import org.apache.kafka.clients.consumer.OffsetAndMetadata;
-import org.apache.kafka.common.TopicPartition;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.*;
 
 public class testThread {
@@ -17,7 +14,6 @@ public class testThread {
 
     public void start(int threadNum) {
         executor = new ThreadPoolExecutor(threadNum, threadNum, 2L, TimeUnit.SECONDS, new LinkedBlockingDeque<Runnable>(), new ThreadPoolExecutor.CallerRunsPolicy());
-        Result result=new Result();
         LinkedBlockingQueue offsetQueue = new LinkedBlockingQueue<List<String>>();
         while(isRunning) {
             try {
