@@ -8,5 +8,5 @@
 
 
 new:
-1.在程序正常运行时采用map维护partition和offset的关系，若程序程序出现异常再次启动时若map为空，则读取kafka中的信息，若kafka中不存在，则去文件中读取，若文件中还是不存在，则offset从0开始。
+1.在程序正常运行时采用map维护partition和offset的关系，若程序程序出现异常再次启动时若map为空，则读取kafka中的信息，若kafka中不存在，则去文件中读取。
 2.修改了写文件和读文件方法
