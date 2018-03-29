@@ -1,7 +1,6 @@
 package com.thread2.Producer;
 
 
-import com.alibaba.fastjson.JSONObject;
 import org.apache.kafka.clients.producer.Partitioner;
 import org.apache.kafka.common.Cluster;
 
@@ -14,11 +13,11 @@ public class ProducerPartitioner implements Partitioner {
        String timestamp = o.toString().split("_")[0];
        long time=Long.parseLong(timestamp);
        System.out.println(time);
-       int numPartition=cluster.partitionCountForTopic();
+       int numPartition=cluster.partitionCountForTopic(s);
        return (int)(time % numPartition);
     }
 
-    @Overrides
+    @Override
     public void close() {
 
     }

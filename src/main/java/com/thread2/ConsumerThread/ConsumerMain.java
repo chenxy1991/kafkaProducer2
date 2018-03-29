@@ -1,12 +1,9 @@
 package com.thread2.ConsumerThread;
 
-import com.cxy.Consumer.KConsumer;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.influxdb.InfluxDB;
-
 import java.io.InputStream;
-import java.sql.SQLException;
 import java.util.Properties;
 
 public class ConsumerMain {

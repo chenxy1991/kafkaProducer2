@@ -1,12 +1,11 @@
 package com.thread2.ConsumerThread;
 
+import org.apache.commons.collections.map.HashedMap;
+import org.apache.kafka.clients.consumer.OffsetAndMetadata;
 import org.apache.kafka.common.TopicPartition;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
@@ -76,47 +75,54 @@ public class MyThread implements Runnable {
 
         /*long finalOffset= readFromFile("/offset.txt");
         System.out.println(finalOffset);*/
-        saveToFile(1000,"/offset.txt");
+        /*saveToFile(1000,"/offset.txt");
         long finalOffset= readFromFile("/offset.txt");
-        System.out.println(finalOffset);
+        System.out.println(finalOffset);*/
+
+       /* Map<TopicPartition,Long> lastCommited=new HashMap<>();
+        if(lastCommited.get(0) == null)
+        {
+            lastCommited.put(0,getLastCommited());
+        }*/
+       /* Map<Integer,String> commitMap=new HashMap<>();
+        commitMap.put(1,"33");
+        commitMap.put(2,"34");
+        commitMap.put(3,"35");
+        saveToFile(commitMap, "/offset.txt");*/
+        readFromFile(1,"/offset.txt");
+        readFromFile(2,"/offset.txt");
+        readFromFile(3,"/offset.txt");
     }
 
-    public static void saveToFile(long offset,String filename)  {
+    public static void saveToFile(Map<Integer,String> commitMap, String filename)  {
         BufferedWriter Buff = null;
         File file = new File(MyThread.class.getResource(filename).getPath());
         try {
-            Buff =new BufferedWriter(new FileWriter(file));
-            Buff.write(String.valueOf(offset));
+            Buff =new BufferedWriter(new FileWriter(file,false));
+            for(Integer partition:commitMap.keySet()){
+                Buff.write(partition+":"+String.valueOf(commitMap.get(partition)));
+                Buff.write("\n");
+            }
             Buff.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static long readFromFile(String filename){
-       /* File file = new File(MyThread.class.getResource(filename).getPath());
-        System.out.println(MyThread.class.getResource(filename).getPath());
-        FileInputStream in = null;
-        long offset=0L;
-        try {
-            in = new FileInputStream(file);
-            offset = (long)in.read();
-            in.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return offset;*/
-        BufferedReader bre = null;
+    public static long readFromFile(Integer partition,String filename){
+        BufferedReader br = null;
         String str=null;
         long offset=0L;
-        File file = new File(MyThread.class.getResource(filename).getPath());
+        System.out.println(ConsumerGen.class.getResource(filename).getPath());
+        File file = new File(ConsumerGen.class.getResource(filename).getPath());
         try {
-            bre = new BufferedReader(new FileReader(file));
-            while ((str = bre.readLine())!= null) // 判断最后一行不存在，为空结束循环
+            br = new BufferedReader(new FileReader(file));
+            while ((str = br.readLine())!= null) // 判断最后一行不存在，为空结束循环
             {
-               offset=Long.parseLong(str);
+                if(String.valueOf(partition).equals(str.split(":")[0])) {
+                    offset = Long.parseLong(str.split(":")[1]);
+                    System.out.println(offset);
+                }
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

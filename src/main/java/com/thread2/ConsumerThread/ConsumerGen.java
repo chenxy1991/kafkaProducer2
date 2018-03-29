@@ -1,17 +1,11 @@
 package com.thread2.ConsumerThread;
 
-import com.cxy.Consumer.KConsumer;
+
 import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.common.PartitionInfo;
 import org.apache.kafka.common.TopicPartition;
-import org.apache.kafka.common.internals.Topic;
 import org.influxdb.InfluxDB;
-import org.influxdb.InfluxDBFactory;
-import org.influxdb.dto.Pong;
-
 import java.io.*;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -24,7 +18,8 @@ public class ConsumerGen {
     private String topic;
     InfluxDB influxDB;
     AtomicBoolean isRunning;
-    AtomicLong commited =new AtomicLong(0);
+   // AtomicLong lastcommited =new AtomicLong(0);
+    Map<TopicPartition,Long> lastCommited=new HashMap<>();
     final long awaitTime = 5 * 1000;
     int threadNum = 5;
 
@@ -83,21 +78,17 @@ public class ConsumerGen {
         List<PartitionInfo> partitionInfos = consumer.partitionsFor(topic);
         Map<TopicPartition, OffsetAndMetadata> commitMap = new HashMap<>();
         List<Map<TopicPartition,Offset>> commitQueue = new ArrayList<Map<TopicPartition,Offset>>();
-        long minoffset = Long.MAX_VALUE;
+        long minOffset = Long.MAX_VALUE;
         long initOffset = 0L;
         long lastOffset = 0L;
         long finalOffset =2751L;
         for (PartitionInfo s : partitionInfos) {
             TopicPartition partition = new TopicPartition(topic, s.partition());
-            OffsetAndMetadata offsetAndMetadata = consumer.committed(partition);
-            if(offsetAndMetadata != null) {
-                commited.set(offsetAndMetadata.offset());
-                //commited.set(3608L);
-                System.out.println("上次提交的offset是："+commited.get());
-                finalOffset = commited.get();
+            if(lastCommited.get(partition) == null) {
+               finalOffset=getLastCommited(partition);
             }
-            else{
-                finalOffset= readFromFile("offset.txt");
+            else {
+                finalOffset = lastCommited.get(partition);
             }
             if (force.equals(true)) {
                 for (Map<TopicPartition, Offset> offsets : offsetQueue) {
@@ -106,15 +97,15 @@ public class ConsumerGen {
                         System.out.println("initoffset是："+initOffset);
                         lastOffset = offsets.get(partition).getLastOffset();
                         System.out.println("lastoffset是："+lastOffset);
-                        if (lastOffset < minoffset)
-                            minoffset = lastOffset;
+                        if (lastOffset < minOffset)
+                            minOffset = lastOffset;
                     }
                 }
-                OffsetAndMetadata minOffsetAndMetadata = new OffsetAndMetadata(minoffset+1);
-                System.out.println("此次要提交的offset是:"+minoffset);
-                saveToFile(minoffset,"offset.txt");
+                OffsetAndMetadata minOffsetAndMetadata = new OffsetAndMetadata(minOffset+1);
+                System.out.println("此次要提交的offset是:"+ minOffset);
                 commitMap.put(partition, minOffsetAndMetadata);
                 consumer.commitSync(commitMap);
+                saveToFile(commitMap,"/offset.txt");
             } else {
                 if (offsetQueue.size() >= 2) {
                     while (!offsetQueue.isEmpty()) {
@@ -129,14 +120,18 @@ public class ConsumerGen {
                             //commitQueue.add(offsets);
                             System.out.println("true");
                             finalOffset = lastOffset;
-                        } else {
+                        } else if(lastOffset < finalOffset) {
+                            offsetQueue.remove(offsets);
+                        }
+                        else{
                             commitQueue.add(offsets);
                         }
                     }
                     offsetQueue.addAll(commitQueue);
                     System.out.println("处理后的offsetQueue的大小为"+offsetQueue.size());
                     OffsetAndMetadata minOffsetAndMetadata = new OffsetAndMetadata(finalOffset+1);
-                    System.out.println("处理后的offsetQueue中所需提交的offset是:"+finalOffset);
+                    lastCommited.put(partition,finalOffset+1);
+                    System.out.println("下一次要处理的offset是:"+(finalOffset+1));
                     commitMap.put(partition, minOffsetAndMetadata);
                     consumer.commitSync(commitMap);
                     commitQueue.clear();
@@ -145,6 +140,21 @@ public class ConsumerGen {
         }
     }
 
+    public long getLastCommited(TopicPartition partition) {
+        long finalOffset=0L;
+        OffsetAndMetadata offsetAndMetadata = consumer.committed(partition);
+        if(offsetAndMetadata != null) {
+            //lastcommited.set(offsetAndMetadata.offset());
+            //commited.set(3803L);
+            lastCommited.put(partition,offsetAndMetadata.offset());
+            finalOffset = offsetAndMetadata.offset();
+            System.out.println("上次提交的offset是："+finalOffset);
+        }
+        else{
+            finalOffset= readFromFile(partition,"/offset.txt");
+        }
+        return finalOffset;
+    }
 
     public void shutdown(){
         System.out.println("consumerGen正在关闭。。。");
@@ -166,16 +176,19 @@ public class ConsumerGen {
         this.isRunning.set(false);
     }
 
-    public long readFromFile(String filename){
+    public long readFromFile(TopicPartition partition,String filename){
         BufferedReader br = null;
         String str=null;
         long offset=0L;
+        System.out.println(ConsumerGen.class.getResource(filename).getPath());
         File file = new File(ConsumerGen.class.getResource(filename).getPath());
         try {
             br = new BufferedReader(new FileReader(file));
             while ((str = br.readLine())!= null) // 判断最后一行不存在，为空结束循环
             {
-                offset=Long.parseLong(str);
+                if(String.valueOf(partition.partition()).equals(str.split(":")[0])) {
+                    offset = Long.parseLong(str.split(":")[1]);
+                }
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -185,12 +198,15 @@ public class ConsumerGen {
         return offset;
     }
 
-    public void saveToFile(long offset,String filename)  {
+    public static void saveToFile(Map<TopicPartition,OffsetAndMetadata> commitMap, String filename) {
         BufferedWriter Buff = null;
-        File file = new File(MyThread.class.getResource(filename).getPath());
+        File file = new File(ConsumerGen.class.getResource(filename).getPath());
         try {
-            Buff =new BufferedWriter(new FileWriter(file));
-            Buff.write(String.valueOf(offset));
+            Buff = new BufferedWriter(new FileWriter(file, false));
+            for (TopicPartition partition: commitMap.keySet()) {
+                Buff.write(partition.partition() + ":" + String.valueOf(commitMap.get(partition)));
+                Buff.write("\n");
+            }
             Buff.close();
         } catch (IOException e) {
             e.printStackTrace();

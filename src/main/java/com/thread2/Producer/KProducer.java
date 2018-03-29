@@ -14,6 +14,8 @@ public class KProducer {
     private final Producer<String, String> producer;
     private static Logger log = LoggerFactory.getLogger(KProducer.class);
 
+    public static int i=1;
+
     public KProducer() {
         Properties props = new Properties();
         try {
@@ -32,7 +34,7 @@ public class KProducer {
             //String key = topic +"_"+ timeStamp+"_"+"host="+content.get("host")+",region="+content.get("region");
             String key = timeStamp+"_"+"host="+content.get("host")+",region="+content.get("region");
             System.out.println(String.format("key = %s, value = %s",key,s));
-            producer.send(new ProducerRecord<String, String>("cputest",key,s),new Callback() {
+           /* producer.send(new ProducerRecord<String, String>("cputest",key,s),new Callback() {
                 public void onCompletion(RecordMetadata metadata, Exception e) {
                     if(e != null) {
                         e.printStackTrace();
@@ -43,7 +45,19 @@ public class KProducer {
                         System.out.println(String.format("partition = %s, offset = %d", metadata.partition(), metadata.offset()));
                     }
                 }
+            });*/
+            System.out.println("生产者发送的第"+i+"条消息是"+s);
+            log.info("生产者发送的第[{}]条消息是[{}]",i,s);
+            producer.send(new ProducerRecord<String, String>("cpu", 0,Integer.toString(i++), s),new Callback() {
+                public void onCompletion(RecordMetadata metadata, Exception e) {
+                    if(e != null) {
+                        e.printStackTrace();
+                        log.info(e.getMessage());
+                    } else {
+                        System.out.println("The offset of the record we just sent is: " + metadata.offset());
+                        log.info("The offset of the record we just sent is:[{}]",metadata.offset());
+                    }
+                }
             });
+        }
     }
-
-}
