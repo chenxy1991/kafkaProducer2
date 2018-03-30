@@ -77,7 +77,7 @@ public class ConsumerGen {
         System.out.println("进入commitOffsets方法...");
         List<PartitionInfo> partitionInfos = consumer.partitionsFor(topic);
         Map<TopicPartition, OffsetAndMetadata> commitMap = new HashMap<>();
-        List<Map<TopicPartition,Offset>> commitQueue = new ArrayList<Map<TopicPartition,Offset>>();
+        List<Map<TopicPartition,Offset>> commitList = new ArrayList<Map<TopicPartition,Offset>>();
         long minOffset = Long.MAX_VALUE;
         long initOffset = 0L;
         long lastOffset = 0L;
@@ -124,17 +124,17 @@ public class ConsumerGen {
                             offsetQueue.remove(offsets);
                         }
                         else{
-                            commitQueue.add(offsets);
+                            commitList.add(offsets);
                         }
                     }
-                    offsetQueue.addAll(commitQueue);
+                    offsetQueue.addAll(commitList);
                     System.out.println("处理后的offsetQueue的大小为"+offsetQueue.size());
                     OffsetAndMetadata minOffsetAndMetadata = new OffsetAndMetadata(finalOffset+1);
                     lastCommited.put(partition,finalOffset+1);
                     System.out.println("下一次要处理的offset是:"+(finalOffset+1));
                     commitMap.put(partition, minOffsetAndMetadata);
                     consumer.commitSync(commitMap);
-                    commitQueue.clear();
+                    commitList.clear();
                 }
             }
         }
