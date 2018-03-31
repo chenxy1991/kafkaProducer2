@@ -13,7 +13,7 @@ public class KProducer {
 
     private final Producer<String, String> producer;
     //private static Logger log = LoggerFactory.getLogger(KProducer.class);
-    private Logger log = LoggerFactory.getLogger("KProducerLog");
+    private Logger log = LoggerFactory.getLogger("ProducerLog");
 
     public static int i=1;
 
