@@ -12,7 +12,8 @@ import java.util.Properties;
 public class KProducer {
 
     private final Producer<String, String> producer;
-    private static Logger log = LoggerFactory.getLogger(KProducer.class);
+    //private static Logger log = LoggerFactory.getLogger(KProducer.class);
+    private Logger log = LoggerFactory.getLogger("KProducerLog");
 
     public static int i=1;
 

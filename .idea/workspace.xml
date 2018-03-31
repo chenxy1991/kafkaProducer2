@@ -2,7 +2,42 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a05bc1e3-eaf5-4289-ab29-eeda5694f2fb" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/ConsumerGen.java" afterPath="$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/ConsumerGen.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/ConsumerHandlerThread.java" afterPath="$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/ConsumerHandlerThread.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/ConsumerMain.java" afterPath="$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/ConsumerMain.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/DBOperation.java" afterPath="$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/DBOperation.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thread2/Producer/KProducer.java" afterPath="$PROJECT_DIR$/src/main/java/com/thread2/Producer/KProducer.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db.properties" afterPath="$PROJECT_DIR$/src/main/resources/db.properties" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/logback.xml" afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/thread2/ConsumerThread/ConsumerGen.class" afterPath="$PROJECT_DIR$/target/classes/com/thread2/ConsumerThread/ConsumerGen.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/thread2/ConsumerThread/ConsumerHandlerThread.class" afterPath="$PROJECT_DIR$/target/classes/com/thread2/ConsumerThread/ConsumerHandlerThread.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/thread2/ConsumerThread/ConsumerMain$1.class" afterPath="$PROJECT_DIR$/target/classes/com/thread2/ConsumerThread/ConsumerMain$1.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/thread2/ConsumerThread/ConsumerMain.class" afterPath="$PROJECT_DIR$/target/classes/com/thread2/ConsumerThread/ConsumerMain.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/thread2/ConsumerThread/DBOperation$DBOperationHolder.class" afterPath="$PROJECT_DIR$/target/classes/com/thread2/ConsumerThread/DBOperation$DBOperationHolder.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/thread2/ConsumerThread/DBOperation.class" afterPath="$PROJECT_DIR$/target/classes/com/thread2/ConsumerThread/DBOperation.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/thread2/Producer/KProducer$1.class" afterPath="$PROJECT_DIR$/target/classes/com/thread2/Producer/KProducer$1.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/thread2/Producer/KProducer.class" afterPath="$PROJECT_DIR$/target/classes/com/thread2/Producer/KProducer.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/db.properties" afterPath="$PROJECT_DIR$/target/classes/db.properties" />
+      <change beforePath="$PROJECT_DIR$/target/classes/logback.xml" afterPath="$PROJECT_DIR$/target/classes/logback.xml" />
+      <change beforePath="$PROJECT_DIR$/target/classes/offset.txt" afterPath="$PROJECT_DIR$/target/classes/offset.txt" />
+      <change beforePath="$PROJECT_DIR$/target/kafka.war" afterPath="$PROJECT_DIR$/target/kafka.war" />
+      <change beforePath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/ConsumerThread/ConsumerGen.class" afterPath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/ConsumerThread/ConsumerGen.class" />
+      <change beforePath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/ConsumerThread/ConsumerHandlerThread.class" afterPath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/ConsumerThread/ConsumerHandlerThread.class" />
+      <change beforePath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/ConsumerThread/ConsumerMain$1.class" afterPath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/ConsumerThread/ConsumerMain$1.class" />
+      <change beforePath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/ConsumerThread/ConsumerMain.class" afterPath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/ConsumerThread/ConsumerMain.class" />
+      <change beforePath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/ConsumerThread/DBOperation$DBOperationHolder.class" afterPath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/ConsumerThread/DBOperation$DBOperationHolder.class" />
+      <change beforePath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/ConsumerThread/DBOperation.class" afterPath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/ConsumerThread/DBOperation.class" />
+      <change beforePath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/ConsumerThread/MyThread.class" afterPath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/ConsumerThread/MyThread.class" />
+      <change beforePath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/Producer/KProducer$1.class" afterPath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/Producer/KProducer$1.class" />
+      <change beforePath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/Producer/KProducer.class" afterPath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/Producer/KProducer.class" />
+      <change beforePath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/db.properties" afterPath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/db.properties" />
+      <change beforePath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/logback.xml" afterPath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/logback.xml" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.thread2.ConsumerThread.ConsumerGenTest.xml" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.thread2.ConsumerThread.ConsumerGenTest.xml" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.thread2.Producer.KProducerTest.xml" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.thread2.Producer.KProducerTest.xml" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.thread2.ConsumerThread.ConsumerGenTest.txt" afterPath="$PROJECT_DIR$/target/surefire-reports/com.thread2.ConsumerThread.ConsumerGenTest.txt" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.thread2.Producer.KProducerTest.txt" afterPath="$PROJECT_DIR$/target/surefire-reports/com.thread2.Producer.KProducerTest.txt" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -18,8 +53,8 @@
       <file leaf-file-name="ConsumerMain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/ConsumerMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="117">
-              <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+            <state relative-caret-position="378">
+              <caret line="14" column="60" lean-forward="false" selection-start-line="14" selection-start-column="60" selection-end-line="14" selection-end-column="60" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -27,11 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="db.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/db.properties">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="-162">
+              <caret line="66" column="0" lean-forward="true" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -40,8 +75,28 @@
       <file leaf-file-name="KProducer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Producer/KProducer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="62" column="5" lean-forward="false" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
+            <state relative-caret-position="216">
+              <caret line="15" column="62" lean-forward="false" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="62" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="KConsumer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/cxy/Consumer/KConsumer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="158">
+              <caret line="158" column="31" lean-forward="false" selection-start-line="158" selection-start-column="29" selection-end-line="158" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="logback.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/logback.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2268">
+              <caret line="84" column="46" lean-forward="false" selection-start-line="84" selection-start-column="27" selection-end-line="84" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -50,75 +105,56 @@
       <file leaf-file-name="Start.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/start/Start.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
+            <state relative-caret-position="128">
               <caret line="39" column="24" lean-forward="false" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="KProducer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cxy/Producer/KProducer.java">
+      <file leaf-file-name="DBOperation.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/DBOperation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="89">
-              <caret line="14" column="26" lean-forward="false" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="26" />
+            <state relative-caret-position="-351">
+              <caret line="24" column="62" lean-forward="true" selection-start-line="24" selection-start-column="62" selection-end-line="24" selection-end-column="62" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConsumerGen.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/ConsumerGen.java">
+      <file leaf-file-name="db.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/db.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="216" column="0" lean-forward="true" selection-start-line="216" selection-start-column="0" selection-end-line="216" selection-end-column="0" />
+            <state relative-caret-position="27">
+              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConsumerHandlerThread.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/ConsumerHandlerThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="297">
+              <caret line="20" column="61" lean-forward="false" selection-start-line="20" selection-start-column="61" selection-end-line="20" selection-end-column="61" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2205#2229#0" expanded="true" />
-                <element signature="e#3016#3044#0" expanded="true" />
-                <element signature="e#7351#7352#0" expanded="true" />
-                <element signature="e#7392#7393#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="offset.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/offset.txt">
+      <file leaf-file-name="ConsumerGen.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/ConsumerGen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="4" lean-forward="false" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="offset.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/target/classes/offset.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="81">
-              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MyThread.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/MyThread.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-545">
-              <caret line="93" column="22" lean-forward="false" selection-start-line="93" selection-start-column="22" selection-end-line="93" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="consumer.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/consumer.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="9" column="15" lean-forward="false" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
-              <folding />
+            <state relative-caret-position="297">
+              <caret line="21" column="61" lean-forward="false" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="61" />
+              <folding>
+                <element signature="e#2367#2391#0" expanded="true" />
+                <element signature="e#3172#3200#0" expanded="true" />
+                <element signature="e#8217#8218#0" expanded="true" />
+                <element signature="e#8258#8259#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -145,10 +181,17 @@
       <find>获取到的数据有</find>
       <find>commit</find>
       <find>3903</find>
-      <find>true</find>
       <find>4303</find>
       <find>4305</find>
       <find>offsets为</find>
+      <find>ini</find>
+      <find>Sy</find>
+      <find>true</find>
+      <find>ConsumerGenLog</find>
+      <find>log</find>
+      <find>ConsumerGenLogAppender</find>
+      <find>log.info</find>
+      <find>Sys</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -177,15 +220,18 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/producer.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/testThread.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/DBOperation.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/thread2/Producer/ProducerPartitioner.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/ConsumerHandlerThread.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/ConsumerMain.java" />
         <option value="$PROJECT_DIR$/src/main/resources/consumer.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thread2/Producer/KProducer.java" />
         <option value="$PROJECT_DIR$/src/main/resources/offset.txt" />
         <option value="$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/MyThread.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/db.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/thread2/Producer/KProducer.java" />
+        <option value="$PROJECT_DIR$/src/logback.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/logback.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/ConsumerGen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/ConsumerHandlerThread.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/ConsumerMain.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/DBOperation.java" />
       </list>
     </option>
   </component>
@@ -431,16 +477,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="cxy" type="462c0819:PsiDirectoryNode" />
-              <item name="Producer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="thread2" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -491,31 +527,6 @@
               <item name="target" type="462c0819:PsiDirectoryNode" />
               <item name="classes" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="thread2" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="thread2" type="462c0819:PsiDirectoryNode" />
-              <item name="ConsumerThread" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="thread2" type="462c0819:PsiDirectoryNode" />
-              <item name="Producer" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -552,6 +563,7 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\ideaProjects1\kafkaProducer2\src\main\resources" />
+      <recent name="D:\ideaProjects1\kafkaProducer2\src" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -566,7 +578,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.MyThread">
+  <component name="RunManager" selected="Application.ConsumerMain">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -776,9 +788,9 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.MyThread" />
-        <item index="1" class="java.lang.String" itemvalue="Application.ConsumerMain" />
-        <item index="2" class="java.lang.String" itemvalue="Application.Start" />
+        <item index="0" class="java.lang.String" itemvalue="Application.ConsumerMain" />
+        <item index="1" class="java.lang.String" itemvalue="Application.Start" />
+        <item index="2" class="java.lang.String" itemvalue="Application.MyThread" />
         <item index="3" class="java.lang.String" itemvalue="JUnit.KProducerTest.testSetUp" />
         <item index="4" class="java.lang.String" itemvalue="JUnit.KProducerTest.setUp" />
       </list>
@@ -829,11 +841,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="195572000" />
+    <option name="totallyTimeSpent" value="217973000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -842,14 +853,14 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16587113" sideWeight="0.26025918" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2661098" sideWeight="0.26025918" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15982722" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27684963" sideWeight="0.73974085" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3210024" sideWeight="0.73974085" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293556" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1587473" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27591792" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -933,20 +944,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/ConsumerGen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2205#2229#0" expanded="true" />
-            <element signature="e#3016#3044#0" expanded="true" />
-            <element signature="e#7351#7352#0" expanded="true" />
-            <element signature="e#7392#7393#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://D:/java1.8/jdk1.8/src.zip!/java/util/Properties.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="11691">
@@ -1058,6 +1055,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="27">
           <caret line="1" column="10" lean-forward="false" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1073,13 +1071,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cxy/Consumer/KConsumer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="147" column="35" lean-forward="false" selection-start-line="147" selection-start-column="35" selection-end-line="147" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -1149,21 +1140,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="101">
           <caret line="30" column="17" lean-forward="false" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/logback.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-776">
-          <caret line="15" column="22" lean-forward="false" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -1183,17 +1159,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/DBOperation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="79" column="22" lean-forward="true" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="22" />
-          <folding>
-            <element signature="method#connectDB#0;class#DBOperation#0" expanded="false" />
-            <element signature="method#connect#0;class#DBOperation#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/com/thread2/ConsumerThread/ConsumerGenTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -1208,31 +1173,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Producer/ProducerPartitioner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/ConsumerHandlerThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="4" column="57" lean-forward="false" selection-start-line="4" selection-start-column="57" selection-end-line="4" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/db.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/consumer.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
@@ -1241,52 +1181,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/start/Start.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="39" column="24" lean-forward="false" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Producer/KProducer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="62" column="5" lean-forward="false" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/ConsumerMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cxy/Producer/KProducer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="89">
           <caret line="14" column="26" lean-forward="false" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/offset.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="4" lean-forward="false" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/target/classes/offset.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1299,17 +1197,126 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/ConsumerGen.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Producer/ProducerPartitioner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="216" column="0" lean-forward="true" selection-start-line="216" selection-start-column="0" selection-end-line="216" selection-end-column="0" />
+        <state relative-caret-position="135">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/classes/offset.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="4" lean-forward="true" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/offset.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="4" lean-forward="false" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/classes/logback.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1809">
+          <caret line="11" column="37" lean-forward="false" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+          <folding>
+            <marker date="1522508572863" expanded="true" signature="53:4028" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-162">
+          <caret line="66" column="0" lean-forward="true" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cxy/Consumer/KConsumer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="158" column="31" lean-forward="false" selection-start-line="158" selection-start-column="29" selection-end-line="158" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/start/Start.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="39" column="24" lean-forward="false" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/ConsumerMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="14" column="60" lean-forward="false" selection-start-line="14" selection-start-column="60" selection-end-line="14" selection-end-column="60" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2205#2229#0" expanded="true" />
-            <element signature="e#3016#3044#0" expanded="true" />
-            <element signature="e#7351#7352#0" expanded="true" />
-            <element signature="e#7392#7393#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/ConsumerHandlerThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="20" column="61" lean-forward="false" selection-start-line="20" selection-start-column="61" selection-end-line="20" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/ConsumerGen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="21" column="61" lean-forward="false" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="61" />
+          <folding>
+            <element signature="e#2367#2391#0" expanded="true" />
+            <element signature="e#3172#3200#0" expanded="true" />
+            <element signature="e#8217#8218#0" expanded="true" />
+            <element signature="e#8258#8259#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Producer/KProducer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="15" column="62" lean-forward="false" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/ConsumerThread/DBOperation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-351">
+          <caret line="24" column="62" lean-forward="true" selection-start-line="24" selection-start-column="62" selection-end-line="24" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/db.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/logback.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2268">
+          <caret line="84" column="46" lean-forward="false" selection-start-line="84" selection-start-column="27" selection-end-line="84" selection-end-column="46" />
+          <folding />
         </state>
       </provider>
     </entry>

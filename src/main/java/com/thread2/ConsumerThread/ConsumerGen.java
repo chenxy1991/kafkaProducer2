@@ -5,20 +5,23 @@ import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.common.PartitionInfo;
 import org.apache.kafka.common.TopicPartition;
 import org.influxdb.InfluxDB;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.*;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicLong;
 
 public class ConsumerGen {
 
     private final Consumer<String, String> consumer;
     private ExecutorService executor;
     private String topic;
+    //private static Logger log = LoggerFactory.getLogger(ConsumerGen.class);
+    private Logger log = LoggerFactory.getLogger("ConsumerLog");
     InfluxDB influxDB;
     AtomicBoolean isRunning;
-   // AtomicLong lastcommited =new AtomicLong(0);
     Map<TopicPartition,Long> lastCommited=new HashMap<>();
     final long awaitTime = 5 * 1000;
     int threadNum = 5;
@@ -39,6 +42,7 @@ public class ConsumerGen {
             try {
                 ConsumerRecords<String, String> records = consumer.poll(1000);
                 System.out.println("获取到的数据有:"+records.count());
+                log.info("获取到的数据有[{}]条",records.count());
                 Map<TopicPartition,Offset> offsets=getOffsets(records);
                 if (offsets != null) {
                    executor.submit(new ConsumerHandlerThread(records,offsets,offsetQueue));
@@ -61,7 +65,6 @@ public class ConsumerGen {
         for (TopicPartition partition : records.partitions()) {
             offsets.put(partition, null);
         }
-        System.out.println("offsets为"+offsets);
         return offsets;
     }
 
@@ -75,6 +78,7 @@ public class ConsumerGen {
 
     void commitOffsets(Boolean force,LinkedBlockingQueue<Map<TopicPartition,Offset>> offsetQueue) {
         System.out.println("进入commitOffsets方法...");
+        log.info("进入commitOffsets方法...");
         List<PartitionInfo> partitionInfos = consumer.partitionsFor(topic);
         Map<TopicPartition, OffsetAndMetadata> commitMap = new HashMap<>();
         List<Map<TopicPartition,Offset>> commitList = new ArrayList<Map<TopicPartition,Offset>>();
@@ -95,14 +99,17 @@ public class ConsumerGen {
                     if(offsets.get(partition) != null) {
                         initOffset = offsets.get(partition).getInitOffset();
                         System.out.println("initoffset是："+initOffset);
+                        log.info("initoffset是[{}]",initOffset);
                         lastOffset = offsets.get(partition).getLastOffset();
                         System.out.println("lastoffset是："+lastOffset);
+                        log.info("lastoffset是[{}]",lastOffset);
                         if (lastOffset < minOffset)
                             minOffset = lastOffset;
                     }
                 }
                 OffsetAndMetadata minOffsetAndMetadata = new OffsetAndMetadata(minOffset+1);
                 System.out.println("此次要提交的offset是:"+ minOffset);
+                log.info("此次要提交的offset是[{}]",minOffset);
                 commitMap.put(partition, minOffsetAndMetadata);
                 consumer.commitSync(commitMap);
                 saveToFile(commitMap,"/offset.txt");
@@ -110,12 +117,16 @@ public class ConsumerGen {
                 if (offsetQueue.size() >= 2) {
                     while (!offsetQueue.isEmpty()) {
                         System.out.println("当前offsetQueue的大小是："+offsetQueue.size());
+                        log.info("当前offsetQueue的大小是[{}]",offsetQueue.size());
                         Map<TopicPartition, Offset> offsets = offsetQueue.poll();
                         System.out.println("poll后offsetQueue的大小是:"+offsetQueue.size());
+                        log.info("poll后offsetQueue的大小是[{}]",offsetQueue.size());
                         initOffset = offsets.get(partition).getInitOffset();
                         System.out.println("initoffset是："+initOffset);
+                        log.info("initoffset是[{}]",initOffset);
                         lastOffset = offsets.get(partition).getLastOffset();
                         System.out.println("lastoffset是："+lastOffset);
+                        log.info("lastoffset是[{}]",lastOffset);
                         if (initOffset == finalOffset) {
                             //commitQueue.add(offsets);
                             System.out.println("true");
@@ -129,9 +140,11 @@ public class ConsumerGen {
                     }
                     offsetQueue.addAll(commitList);
                     System.out.println("处理后的offsetQueue的大小为"+offsetQueue.size());
+                    log.info("处理后的offsetQueue的大小为[{}]",offsetQueue.size());
                     OffsetAndMetadata minOffsetAndMetadata = new OffsetAndMetadata(finalOffset+1);
                     lastCommited.put(partition,finalOffset+1);
                     System.out.println("下一次要处理的offset是:"+(finalOffset+1));
+                    log.info("下一次要处理的offset是[{}]",(finalOffset+1));
                     commitMap.put(partition, minOffsetAndMetadata);
                     consumer.commitSync(commitMap);
                     commitList.clear();
@@ -149,6 +162,7 @@ public class ConsumerGen {
             lastCommited.put(partition,offsetAndMetadata.offset());
             finalOffset = offsetAndMetadata.offset();
             System.out.println("上次提交的offset是："+finalOffset);
+            log.info("上次提交的offset是[{}]",finalOffset);
         }
         else{
             finalOffset= readFromFile(partition,"/offset.txt");
@@ -158,6 +172,7 @@ public class ConsumerGen {
 
     public void shutdown(){
         System.out.println("consumerGen正在关闭。。。");
+        log.info("consumerGen正在关闭。。。");
         try{
             executor.shutdown();
             if(!executor.awaitTermination(awaitTime, TimeUnit.MILLISECONDS)){
@@ -180,7 +195,6 @@ public class ConsumerGen {
         BufferedReader br = null;
         String str=null;
         long offset=0L;
-        System.out.println(ConsumerGen.class.getResource(filename).getPath());
         File file = new File(ConsumerGen.class.getResource(filename).getPath());
         try {
             br = new BufferedReader(new FileReader(file));

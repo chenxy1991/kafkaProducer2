@@ -17,7 +17,8 @@ public class ConsumerHandlerThread implements Runnable {
     private final ConsumerRecords<String, String> records;
     private final Map<TopicPartition, Offset> offsets;
     private final LinkedBlockingQueue<Map<TopicPartition, Offset>> offsetQueue;
-    private static Logger log = LoggerFactory.getLogger(ConsumerHandlerThread.class);
+    //private static Logger log = LoggerFactory.getLogger(ConsumerHandlerThread.class);
+    private Logger log = LoggerFactory.getLogger("ConsumerLog");
 
 
     public ConsumerHandlerThread(ConsumerRecords<String, String> records,Map<TopicPartition, Offset> offsets, LinkedBlockingQueue offsetQueue) {
@@ -35,6 +36,7 @@ public class ConsumerHandlerThread implements Runnable {
                 recordList.add(record.value() + "&" + record.offset());
             }
             System.out.println(Thread.currentThread().getName() + "获取数据" + recordList.size() + "条");
+            log.info(Thread.currentThread().getName() + "获取数据[{}]条",recordList.size());
             Offset result = null;
             try {
                 result = DBOperation.getInstance().InsertToInfluxdb(recordList);
@@ -48,5 +50,6 @@ public class ConsumerHandlerThread implements Runnable {
         }
         offsetQueue.add(offsets);
         System.out.println(Thread.currentThread().getName()+"执行完后，当前offsetQueue的大小为:"+offsetQueue.size());
+        log.info(Thread.currentThread().getName()+"执行完后，当前offsetQueue的大小为[{}]",offsetQueue.size());
         }
 }
