@@ -1,5 +1,7 @@
-package com.thread2.ConsumerThread;
+package com.thread2.Mytest;
 
+
+import com.thread2.Mytest.hellowordThread;
 
 import java.util.ArrayList;
 import java.util.List;

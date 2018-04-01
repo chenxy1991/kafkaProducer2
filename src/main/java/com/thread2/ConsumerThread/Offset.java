@@ -2,8 +2,8 @@ package com.thread2.ConsumerThread;
 
 public class Offset {
 
-   private long initOffset;
-   private long lastOffset;
+    private long initOffset;
+    private long lastOffset;
 
     public long getInitOffset() {
         return initOffset;

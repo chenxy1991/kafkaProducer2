@@ -1,12 +1,9 @@
-package com.thread2.ConsumerThread;
+package com.thread2.Mytest;
 
-import org.apache.commons.collections.map.HashedMap;
-import org.apache.kafka.clients.consumer.OffsetAndMetadata;
-import org.apache.kafka.common.TopicPartition;
+import com.thread2.ConsumerThread.ConsumerGen;
 
 import java.io.*;
 import java.util.*;
-import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 public class MyThread implements Runnable {

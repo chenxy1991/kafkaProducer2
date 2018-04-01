@@ -1,4 +1,4 @@
-package com.thread2.ConsumerThread;
+package com.thread2.Mytest;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;

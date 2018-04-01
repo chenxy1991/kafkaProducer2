@@ -1,2 +1,5 @@
 com\thread2\start\Start.class
+com\thread2\Mytest\hellowordThread.class
 com\thread2\start\Start$ReqHandler.class
+com\thread2\Mytest\testThread.class
+com\thread2\Mytest\MyThread.class
