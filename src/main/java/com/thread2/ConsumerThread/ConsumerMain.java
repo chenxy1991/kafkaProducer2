@@ -11,18 +11,14 @@ import java.util.Properties;
 
 public class ConsumerMain {
 
-    //private static Logger log = LoggerFactory.getLogger(ConsumerMain.class);
     private static Logger log = LoggerFactory.getLogger("ConsumerLog");
+    private static final Consumer<String, String> consumer = new KafkaConsumer<String, String>(Utils.getConsumerProperties());
+    private static final InfluxDB influxDB = DBOperation.getInstance().getInfluxDB();
+    private static final ConsumerGen consume = new ConsumerGen("cpu", influxDB, consumer);
+
 
     public static void main(String[] args) {
 
-        final Consumer<String, String> consumer;
-        Properties props =getConsumerProperties();
-        consumer = new KafkaConsumer<String, String>(props);
-
-        final InfluxDB influxDB = DBOperation.getInstance().getInfluxDB();
-
-        final ConsumerGen consume = new ConsumerGen("cpu", influxDB, consumer);
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {
@@ -33,10 +29,12 @@ public class ConsumerMain {
                 influxDB.close();
             }
         }));
+
         consume.start(2);
+    }
 
 
-       /* final testThread thread=new testThread();
+     /* final testThread thread=new testThread();
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run()
@@ -46,16 +44,4 @@ public class ConsumerMain {
             }
         }));
         thread.start(2);*/
-    }
-
-    public static Properties getConsumerProperties() {
-        Properties props = new Properties();
-        try {
-            InputStream in = ConsumerMain.class.getResourceAsStream("/consumer.properties");
-            props.load(in);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return props;
-    }
 }
