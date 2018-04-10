@@ -1,7 +1,6 @@
-package com.thread2.ConsumerThread;
+package com.thread2.Consumer;
 
 import junit.framework.TestCase;
-import org.junit.Test;
 
 public class ConsumerGenTest extends TestCase {
 

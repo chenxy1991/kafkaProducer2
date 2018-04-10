@@ -1,14 +1,12 @@
-package com.thread2.ConsumerThread;
+package com.thread2.Consumer;
 
 import com.alibaba.fastjson.JSONObject;
-import org.apache.kafka.common.TopicPartition;
 import org.influxdb.InfluxDB;
 import org.influxdb.InfluxDBFactory;
 import org.influxdb.dto.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.InputStream;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.List;
@@ -40,12 +38,12 @@ public class DBOperation {
 
     public synchronized boolean InsertToInfluxDB(List<String> records) throws Exception {
         Boolean isDone = false;
-        JSONObject record = JSONObject.parseObject(records.get(0).split("&")[0]);
+        JSONObject record = JSONObject.parseObject(records.get(0));
         batchPoints = BatchPoints.database(dbName)
                 .tag("host", (String) record.get("host"))
                 .tag("region", (String) record.get("region")).build();
-        for (String ValueAndOffset : records) {
-            String content = ValueAndOffset.split("&")[0];
+        for (String content : records) {
+            System.out.println("插入的数据为："+content);
             JSONObject json = JSONObject.parseObject(content);
             long tt = transform(content);
             Point point1 = Point.measurement("cpu")
@@ -117,13 +115,7 @@ public class DBOperation {
     }
 
     public String getInfluxDBUrl() {
-        Properties props = new Properties();
-        try {
-            InputStream in = ConsumerMain.class.getResourceAsStream("/db.properties");
-            props.load(in);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Properties props = Utils.getProperties("db.properties");
         return props.get("url").toString();
     }
 }

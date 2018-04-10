@@ -1,18 +1,24 @@
 package com.thread2.Mytest;
 
-import com.thread2.ConsumerThread.ConsumerGen;
+import com.thread2.Consumer.ConsumerGen;
 
 import java.io.*;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MyThread implements Runnable {
 
-    private ThreadLocal<Integer> i = new ThreadLocal<>();
+    //private ThreadLocal<Integer> i = new ThreadLocal<>();
+    AtomicBoolean isDone = new AtomicBoolean(false);
 
     @Override
     public void run() {
-        i.set(0);
+        isDone.set(true);
+
+        if(isDone.get()){
+            System.out.println(Thread.currentThread().getName()+"----cxy");
+        }
 
       /*  for(int i=0;i<5;i++){
             //System.out.println(Thread.currentThread().getName()+"-------"+DBOperation.getInstance().hashCode());
@@ -33,26 +39,28 @@ public class MyThread implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        while (i.get() <= 5) {
+       /* while (i.get() <= 5) {
             System.out.println(Thread.currentThread().getName() + "-------" + i.get());
             i.set(i.get() + 1);
-        }
+        }*/
     }
 
     public static void main(String[] args) {
-      /*  MyThread[] mts=new MyThread[3];
-        for(int i=0;i<mts.length;i++){
-            mts[i]=new MyThread();
+       /* MyThread[] mts = new MyThread[3];
+        for (int i = 0; i < mts.length; i++) {
+            mts[i] = new MyThread();
         }
-        for(int j=0;j<mts.length;j++){
-            Thread thread =new Thread(mts[j]);
+        for (int j = 0; j < mts.length; j++) {
+            Thread thread = new Thread(mts[j]);
             thread.start();
-        }
-        MyThread thread=new MyThread();
-        if(thread != null) {
+        }*/
+       /* MyThread thread = new MyThread();
+        if (thread != null) {
             System.out.println("cxy");
-        }
+        }*/
+        readFromFile(1,"/offset.txt");
     }
+
         /*MyThread thread = new MyThread();
         for (int i = 0; i <= 3; i++) {
             Thread thread1 = new Thread(thread);
@@ -85,11 +93,10 @@ public class MyThread implements Runnable {
         commitMap.put(1,"33");
         commitMap.put(2,"34");
         commitMap.put(3,"35");
-        saveToFile(commitMap, "/offset.txt");*/
+        saveToFile(commitMap, "/offset.txt");
         readFromFile(1,"/offset.txt");
         readFromFile(2,"/offset.txt");
-        readFromFile(3,"/offset.txt");
-    }
+        readFromFile(3,"/offset.txt");*/
 
     public static void saveToFile(Map<Integer,String> commitMap, String filename)  {
         BufferedWriter Buff = null;

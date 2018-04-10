@@ -1,4 +1,4 @@
-package com.thread2.ConsumerThread;
+package com.thread2.Consumer;
 
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
@@ -6,13 +6,10 @@ import org.influxdb.InfluxDB;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.InputStream;
-import java.util.Properties;
-
 public class ConsumerMain {
 
     private static Logger log = LoggerFactory.getLogger("ConsumerLog");
-    private static final Consumer<String, String> consumer = new KafkaConsumer<String, String>(Utils.getConsumerProperties());
+    private static final Consumer<String, String> consumer = new KafkaConsumer<String, String>(Utils.getProperties("consumer.properties"));
     private static final InfluxDB influxDB = DBOperation.getInstance().getInfluxDB();
     private static final ConsumerGen consume = new ConsumerGen("cpu", influxDB, consumer);
 

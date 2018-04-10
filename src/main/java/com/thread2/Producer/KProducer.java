@@ -1,14 +1,12 @@
 package com.thread2.Producer;
 
 import com.alibaba.fastjson.JSONObject;
-import com.thread2.ConsumerThread.Utils;
+import com.thread2.Consumer.Utils;
 import org.apache.kafka.clients.producer.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.InputStream;
 import java.math.BigDecimal;
-import java.util.Properties;
 
 public class KProducer {
 
@@ -18,7 +16,7 @@ public class KProducer {
     public static int i=1;
 
     public KProducer() {
-        producer = new KafkaProducer<String, String>(Utils.getProducerProperties());
+        producer = new KafkaProducer<String, String>(Utils.getProperties("producer.properties"));
     }
 
     public void produce(String s){

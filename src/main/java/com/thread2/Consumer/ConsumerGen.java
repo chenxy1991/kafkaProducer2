@@ -1,4 +1,4 @@
-package com.thread2.ConsumerThread;
+package com.thread2.Consumer;
 
 
 import org.apache.kafka.clients.consumer.*;
@@ -42,7 +42,7 @@ public class ConsumerGen {
                 System.out.println("获取到的数据有:" + records.count());
                 log.info("获取到的数据有[{}]条", records.count());
                 if(!records.isEmpty()){
-                    executor.submit(new ConsumerHandlerThread(records, offset.getOffsets(records), offsetQueue));
+                    executor.submit(new ConsumerHandler(records,offsetQueue));
                 }
                 commitOffsets(false, offsetQueue);
             } catch (Exception e) {
@@ -72,19 +72,18 @@ public class ConsumerGen {
             TopicPartition partition = new TopicPartition(topic, s.partition());
             if (lastCommited.get(partition) == null) {
                 finalOffset = offset.getLastCommited(partition);
-                lastCommited.put(partition, finalOffset);
             } else {
                 finalOffset = lastCommited.get(partition);
             }
             if (force.equals(true)) {
                 minOffset = offset.getMinOffset(partition, offsetQueue);
-                lastCommited.put(partition, minOffset + 1);
                 offset.commitOffset(partition,minOffset);
+                lastCommited.put(partition, minOffset + 1);
             } else {
                 if (offsetQueue.size() >= 2) {
                     finalOffset = dealOffsetQueue(partition, commitList, offsetQueue, finalOffset);
-                    lastCommited.put(partition, finalOffset + 1);
                     offset.commitOffset(partition, finalOffset);
+                    lastCommited.put(partition, finalOffset + 1);
                     commitList.clear();
                 }
             }

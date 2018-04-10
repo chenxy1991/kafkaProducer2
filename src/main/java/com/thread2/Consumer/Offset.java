@@ -1,4 +1,4 @@
-package com.thread2.ConsumerThread;
+package com.thread2.Consumer;
 
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -7,6 +7,7 @@ import org.apache.kafka.clients.consumer.OffsetAndMetadata;
 import org.apache.kafka.common.TopicPartition;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,55 +25,38 @@ public class Offset {
         this.consumer=consumer;
     }
 
-    public long getInitOffset() {
-        return initOffset;
+    public Offset(long initOffset,long lastOffset){
+        this.initOffset = initOffset;
+        this.lastOffset = lastOffset;
     }
 
-    public void setInitOffset(long initOffset) {
-        this.initOffset = initOffset;
+    public long getInitOffset() {
+        return initOffset;
     }
 
     public long getLastOffset() {
         return lastOffset;
     }
 
-    public void setLastOffset(long lastOffset) {
-        this.lastOffset = lastOffset;
-    }
-
-    public Map<TopicPartition, Offset> getOffsets(ConsumerRecords<String, String> records) {
-        if (records.isEmpty()) {
-            return null;
+    public Map<List<String>,Offset> getRecordListAndOffset(ConsumerRecords<String, String> records,TopicPartition partition){
+        List<ConsumerRecord<String, String>> partitionRecords = records.records(partition);
+        Map<List<String>,Offset> recordsAndOffset = new HashMap<>();
+        List<String> recordList=new ArrayList<String>();
+        Offset offset = new Offset(partitionRecords.get(0).offset(),partitionRecords.get(partitionRecords.size()-1).offset());
+        for (ConsumerRecord<String, String> record : partitionRecords) {
+            recordList.add(record.value());
         }
-        Map<TopicPartition, Offset> offsets = new HashMap<TopicPartition, Offset>();
-        for (TopicPartition partition : records.partitions()) {
-            List<ConsumerRecord<String, String>> partitionRecords = records.records(partition);
-            for (ConsumerRecord<String, String> record : partitionRecords){
-
-            }
-            offsets.put(partition, null);
-        }
-        return offsets;
-    }
-
-    public Offset dealRecords(List<String> records) {
-        Offset offset = null;
-        if (records.size() != 0) {
-            long initoffset = Long.valueOf(records.get(0).split("&")[1]);
-            long lastoffset = Long.valueOf(records.get(records.size() - 1).split("&")[1]);
-            offset = new Offset();
-            offset.setInitOffset(initoffset);
-            offset.setLastOffset(lastoffset);
-            System.out.println(Thread.currentThread().getName() + "插入的该批记录的offset初始值为" + offset.getInitOffset() + ",最后一条记录的偏移值为" + offset.getLastOffset());
-        }
-        return offset;
+        System.out.println(Thread.currentThread().getName() + "获取数据" + recordList.size() + "条");
+        System.out.println(Thread.currentThread().getName() + "插入的该批记录的offset初始值为" + offset.getInitOffset() + ",最后一条记录的偏移值为" + offset.getLastOffset());
+        recordsAndOffset.put(recordList,offset);
+        return recordsAndOffset;
     }
 
     public long readFromFile(TopicPartition partition, String filename) {
         BufferedReader br = null;
         String str = null;
         long offset = 0L;
-        File file = new File(ConsumerGen.class.getResource(filename).getPath());
+        File file = new File(Offset.class.getResource("/"+filename).getPath());
         try {
             br = new BufferedReader(new FileReader(file));
             while ((str = br.readLine()) != null) // 判断最后一行不存在，为空结束循环
@@ -91,7 +75,7 @@ public class Offset {
 
     public void saveToFile(Map<TopicPartition, OffsetAndMetadata> commitMap, String filename) {
         BufferedWriter Buff = null;
-        File file = new File(ConsumerGen.class.getResource(filename).getPath());
+        File file = new File(Offset.class.getResource("/"+filename).getPath());
         try {
             Buff = new BufferedWriter(new FileWriter(file, false));
             for (TopicPartition partition : commitMap.keySet()) {
@@ -111,17 +95,15 @@ public class Offset {
             finalOffset = offsetAndMetadata.offset();
             System.out.println("上次提交的offset是：" + finalOffset);
         } else {
-            finalOffset = readFromFile(partition, "/offset.txt");
+            finalOffset = readFromFile(partition, "offset.txt");
         }
         return finalOffset;
     }
 
     public long getMinOffset(TopicPartition partition,LinkedBlockingQueue<Map<TopicPartition, Offset>> offsetQueue) {
-        long initOffset = 0L,lastOffset = 0L,minOffset = Long.MAX_VALUE;
+        long lastOffset = 0L,minOffset = Long.MAX_VALUE;
         for (Map<TopicPartition, Offset> offsets : offsetQueue) {
-            if (offsets.get(partition) != null) {
-                initOffset = offsets.get(partition).getInitOffset();
-                System.out.println("initoffset是：" + initOffset);
+            if(offsets.containsKey(partition)){
                 lastOffset = offsets.get(partition).getLastOffset();
                 System.out.println("lastoffset是：" + lastOffset);
                 if (lastOffset < minOffset)
@@ -137,7 +119,7 @@ public class Offset {
         Map<TopicPartition, OffsetAndMetadata> commitMap = new HashMap<>();
         commitMap.put(partition, commitOffsetAndMetadata);
         consumer.commitSync(commitMap);
-        saveToFile(commitMap, "/offset.txt");
+        saveToFile(commitMap, "offset.txt");
     }
 
 }
