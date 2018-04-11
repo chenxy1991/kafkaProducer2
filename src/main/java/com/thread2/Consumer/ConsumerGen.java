@@ -34,7 +34,6 @@ public class ConsumerGen {
 
     public void start(int threadNum) {
         this.isRunning.set(true);
-       // LinkedBlockingQueue offsetQueue = new LinkedBlockingQueue<Map<TopicPartition, Offset>>();
         LinkedBlockingQueue offsetQueue = new LinkedBlockingQueue<Offset>();
         executor = new ThreadPoolExecutor(threadNum, threadNum, 2L, TimeUnit.SECONDS, new LinkedBlockingDeque<Runnable>(), new ThreadPoolExecutor.CallerRunsPolicy());
         while (isRunning.get()) {

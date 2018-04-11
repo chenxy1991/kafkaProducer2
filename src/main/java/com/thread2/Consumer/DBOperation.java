@@ -21,7 +21,7 @@ public class DBOperation {
     private Logger log = LoggerFactory.getLogger("ConsumerLog");
 
     private DBOperation() {
-        influxDB = connectDB(3);
+        influxDB = connectDB(3,"db.properties");
     }
 
     private static class DBOperationHolder {
@@ -79,15 +79,15 @@ public class DBOperation {
         return tt;
     }
 
-    private InfluxDB connectDB(int times) {
+    private InfluxDB connectDB(int times,String propsFile) {
         try {
-            influxDB = connect();
+            influxDB = connect(propsFile);
         } catch (SQLException e) {
             if (e.getMessage().equals("influxDB数据库连接失败")) {
                 int time = 1;
                 while (time <= times) {
                     try {
-                        connect();
+                        connect(propsFile);
                     } catch (Exception es) {
                         es.printStackTrace();
                         time++;
@@ -99,8 +99,8 @@ public class DBOperation {
         return influxDB;
     }
 
-    private InfluxDB connect() throws SQLException {
-        String url = getInfluxDBUrl();
+    private InfluxDB connect(String propsFile) throws SQLException {
+        String url = getInfluxDBUrl(propsFile);
         influxDB = InfluxDBFactory.connect(url);
         Pong pong = influxDB.ping();
         if (pong != null) {
@@ -114,8 +114,8 @@ public class DBOperation {
         return influxDB;
     }
 
-    public String getInfluxDBUrl() {
-        Properties props = Utils.getProperties("db.properties");
+    public String getInfluxDBUrl(String propsFile) {
+        Properties props = Utils.getProperties(propsFile);
         return props.get("url").toString();
     }
 }
