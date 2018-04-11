@@ -16,17 +16,17 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class ConsumerHandler implements Runnable {
 
     private final ConsumerRecords<String, String> records;
-    private final Map<TopicPartition, Offset> offsets;
-    private final LinkedBlockingQueue<Map<TopicPartition, Offset>> offsetQueue;
+    private ThreadLocal<Offset> offsets;
+    private final LinkedBlockingQueue<Offset> offsetQueue;
     AtomicBoolean isDone = new AtomicBoolean(false);
     Offset offset ;
     private Logger log = LoggerFactory.getLogger("ConsumerLog");
 
     public ConsumerHandler(ConsumerRecords<String, String> records,LinkedBlockingQueue offsetQueue) {
         this.records = records;
-        this.offsets = new HashMap<>();
         this.offsetQueue = offsetQueue;
         this.offset = new Offset();
+        this.offsets = new ThreadLocal<>();
     }
 
     @Override
@@ -40,12 +40,11 @@ public class ConsumerHandler implements Runnable {
                     e.printStackTrace();
                 }
                 if (isDone.get()) {
-                    Offset result = recordMap.get(recordList);
-                    offsets.put(partition, result);
-                    System.out.println(Thread.currentThread().getName() + "已将"+offsets.get(partition).toString()+"加入offsetQueue");
+                    offsets.set(recordMap.get(recordList));
+                    System.out.println(Thread.currentThread().getName() + "已将"+offsets.get().toString()+"加入offsetQueue");
                 }
             }
-            offsetQueue.add(offsets);
+            offsetQueue.add(offsets.get());
         }
         System.out.println(Thread.currentThread().getName() + "执行完后，当前offsetQueue的大小为:" + offsetQueue.size());
         log.info(Thread.currentThread().getName() + "执行完后，当前offsetQueue的大小为[{}]", offsetQueue.size());

@@ -32,6 +32,10 @@ public class Offset{
         this.partition = partition;
     }
 
+    public TopicPartition getPartition() {
+        return partition;
+    }
+
     public long getInitOffset() {
         return initOffset;
     }
@@ -71,11 +75,11 @@ public class Offset{
         return finalOffset;
     }
 
-    public long getMinOffset(TopicPartition partition,LinkedBlockingQueue<Map<TopicPartition, Offset>> offsetQueue) {
+    public long getMinOffset(TopicPartition partition,LinkedBlockingQueue<Offset> offsetQueue) {
         long lastOffset = 0L,minOffset = Long.MAX_VALUE;
-        for (Map<TopicPartition, Offset> offsets : offsetQueue) {
-            if(offsets.containsKey(partition)){
-                lastOffset = offsets.get(partition).getLastOffset();
+        for (Offset offsets : offsetQueue) {
+            if(offsets.getPartition().equals(partition)){
+                lastOffset = offsets.getLastOffset();
                 System.out.println("lastoffset是：" + lastOffset);
                 if (lastOffset < minOffset)
                     minOffset = lastOffset;
@@ -83,6 +87,7 @@ public class Offset{
         }
         return minOffset;
     }
+
 
     public void commitOffset(TopicPartition partition,long commitOffset){
         OffsetAndMetadata commitOffsetAndMetadata = new OffsetAndMetadata(commitOffset + 1);

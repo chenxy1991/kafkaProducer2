@@ -34,7 +34,8 @@ public class ConsumerGen {
 
     public void start(int threadNum) {
         this.isRunning.set(true);
-        LinkedBlockingQueue offsetQueue = new LinkedBlockingQueue<Map<TopicPartition, Offset>>();
+       // LinkedBlockingQueue offsetQueue = new LinkedBlockingQueue<Map<TopicPartition, Offset>>();
+        LinkedBlockingQueue offsetQueue = new LinkedBlockingQueue<Offset>();
         executor = new ThreadPoolExecutor(threadNum, threadNum, 2L, TimeUnit.SECONDS, new LinkedBlockingDeque<Runnable>(), new ThreadPoolExecutor.CallerRunsPolicy());
         while (isRunning.get()) {
             try {
@@ -62,12 +63,12 @@ public class ConsumerGen {
         //如果offset不连续 例如 1 3 4 则提交1  3 4 继续塞回队列
  */
 
-    void commitOffsets(Boolean force, LinkedBlockingQueue<Map<TopicPartition, Offset>> offsetQueue) {
+      void commitOffsets(Boolean force, LinkedBlockingQueue<Offset> offsetQueue) {
         System.out.println("进入commitOffsets方法...");
         log.info("进入commitOffsets方法...");
         long finalOffset = 0L,minOffset = 0L;
         List<PartitionInfo> partitionInfos = consumer.partitionsFor(topic);
-        List<Map<TopicPartition, Offset>> commitList = new ArrayList<Map<TopicPartition, Offset>>();
+        List<Offset> commitList = new ArrayList<Offset>();
         for (PartitionInfo s : partitionInfos) {
             TopicPartition partition = new TopicPartition(topic, s.partition());
             if (lastCommited.get(partition) == null) {
@@ -91,16 +92,16 @@ public class ConsumerGen {
         }
     }
 
-    public long dealOffsetQueue(TopicPartition partition, List<Map<TopicPartition, Offset>> commitList,LinkedBlockingQueue<Map<TopicPartition, Offset>> offsetQueue,long finalOffset){
+    public long dealOffsetQueue(TopicPartition partition, List<Offset> commitList,LinkedBlockingQueue<Offset> offsetQueue,long finalOffset){
         long initOffset = 0L,lastOffset = 0L;
         while (!offsetQueue.isEmpty()) {
             System.out.println("当前offsetQueue的大小是：" + offsetQueue.size());
             log.info("当前offsetQueue的大小是[{}]", offsetQueue.size());
-            Map<TopicPartition, Offset> offsets = offsetQueue.poll();
+            Offset offsets = offsetQueue.poll();
             System.out.println("poll后offsetQueue的大小是:" + offsetQueue.size());
             log.info("poll后offsetQueue的大小是[{}]", offsetQueue.size());
-            initOffset = offsets.get(partition).getInitOffset();
-            lastOffset = offsets.get(partition).getLastOffset();
+            initOffset = offsets.getInitOffset();
+            lastOffset = offsets.getLastOffset();
             System.out.println("initoffset是："+initOffset + ",lastoffset是：" + lastOffset);
             log.info("initoffset是[{}],lastoffset是[{}]",initOffset,lastOffset);
             if (initOffset == finalOffset || initOffset == finalOffset+1) {
