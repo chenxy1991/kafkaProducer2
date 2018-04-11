@@ -42,11 +42,11 @@ public class ConsumerHandler implements Runnable {
                 if (isDone.get()) {
                     Offset result = recordMap.get(recordList);
                     offsets.put(partition, result);
-                    System.out.println(Thread.currentThread().getName() + "处理完成");
+                    System.out.println(Thread.currentThread().getName() + "已将"+offsets.get(partition).toString()+"加入offsetQueue");
                 }
             }
+            offsetQueue.add(offsets);
         }
-        offsetQueue.add(offsets);
         System.out.println(Thread.currentThread().getName() + "执行完后，当前offsetQueue的大小为:" + offsetQueue.size());
         log.info(Thread.currentThread().getName() + "执行完后，当前offsetQueue的大小为[{}]", offsetQueue.size());
     }

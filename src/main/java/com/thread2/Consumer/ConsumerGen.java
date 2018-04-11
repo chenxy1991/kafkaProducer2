@@ -75,15 +75,16 @@ public class ConsumerGen {
             } else {
                 finalOffset = lastCommited.get(partition);
             }
+            System.out.println("lastCommited:"+finalOffset);
             if (force.equals(true)) {
                 minOffset = offset.getMinOffset(partition, offsetQueue);
                 offset.commitOffset(partition,minOffset);
-                lastCommited.put(partition, minOffset + 1);
+                lastCommited.put(partition, minOffset);
             } else {
                 if (offsetQueue.size() >= 2) {
                     finalOffset = dealOffsetQueue(partition, commitList, offsetQueue, finalOffset);
                     offset.commitOffset(partition, finalOffset);
-                    lastCommited.put(partition, finalOffset + 1);
+                    lastCommited.put(partition, finalOffset);
                     commitList.clear();
                 }
             }
@@ -102,7 +103,7 @@ public class ConsumerGen {
             lastOffset = offsets.get(partition).getLastOffset();
             System.out.println("initoffset是："+initOffset + ",lastoffset是：" + lastOffset);
             log.info("initoffset是[{}],lastoffset是[{}]",initOffset,lastOffset);
-            if (initOffset == finalOffset) {
+            if (initOffset == finalOffset || initOffset == finalOffset+1) {
                 System.out.println("true");
                 finalOffset = lastOffset;
             } else if (lastOffset < finalOffset) {

@@ -13,10 +13,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class Offset {
+public class Offset{
 
     private long initOffset;
     private long lastOffset;
+    private TopicPartition partition;
     private Consumer<String, String> consumer;
 
     public Offset(){}
@@ -25,9 +26,10 @@ public class Offset {
         this.consumer=consumer;
     }
 
-    public Offset(long initOffset,long lastOffset){
+    public Offset(TopicPartition partition,long initOffset,long lastOffset){
         this.initOffset = initOffset;
         this.lastOffset = lastOffset;
+        this.partition = partition;
     }
 
     public long getInitOffset() {
@@ -38,11 +40,16 @@ public class Offset {
         return lastOffset;
     }
 
+    @Override
+    public String toString(){
+          return "["+"partition:"+this.partition.partition()+","+this.getInitOffset() +"," + this.getLastOffset()+"]";
+    }
+
     public Map<List<String>,Offset> getRecordListAndOffset(ConsumerRecords<String, String> records,TopicPartition partition){
         List<ConsumerRecord<String, String>> partitionRecords = records.records(partition);
         Map<List<String>,Offset> recordsAndOffset = new HashMap<>();
         List<String> recordList=new ArrayList<String>();
-        Offset offset = new Offset(partitionRecords.get(0).offset(),partitionRecords.get(partitionRecords.size()-1).offset());
+        Offset offset = new Offset(partition,partitionRecords.get(0).offset(),partitionRecords.get(partitionRecords.size()-1).offset());
         for (ConsumerRecord<String, String> record : partitionRecords) {
             recordList.add(record.value());
         }

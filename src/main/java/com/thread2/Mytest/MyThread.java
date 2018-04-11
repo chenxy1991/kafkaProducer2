@@ -46,6 +46,11 @@ public class MyThread implements Runnable {
     }
 
     public static void main(String[] args) {
+        Map<Integer,String> commitMap=new HashMap<>();
+        for(Integer m:commitMap.keySet()){
+            System.out.println("----"+m+":"+commitMap.get(m));
+        }
+
        /* MyThread[] mts = new MyThread[3];
         for (int i = 0; i < mts.length; i++) {
             mts[i] = new MyThread();
@@ -58,7 +63,7 @@ public class MyThread implements Runnable {
         if (thread != null) {
             System.out.println("cxy");
         }*/
-        readFromFile(1,"/offset.txt");
+       // readFromFile(1,"/offset.txt");
     }
 
         /*MyThread thread = new MyThread();
