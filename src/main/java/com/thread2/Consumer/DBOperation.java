@@ -20,6 +20,7 @@ public class DBOperation {
     public static String dbName = "cxy";
     private Logger log = LoggerFactory.getLogger("ConsumerLog");
 
+    //单例模式获取influxDB连接
     private DBOperation() {
         influxDB = connectDB(3,"db.properties");
     }
@@ -36,6 +37,7 @@ public class DBOperation {
         return influxDB;
     }
 
+    //插入influxDB
     public synchronized boolean InsertToInfluxDB(List<String> records) throws Exception {
         Boolean isDone = false;
         JSONObject record = JSONObject.parseObject(records.get(0));
@@ -50,10 +52,10 @@ public class DBOperation {
                     .time(TimeUnit.NANOSECONDS.toNanos(tt), TimeUnit.NANOSECONDS)
                     .addField("load", Float.parseFloat(json.get("load").toString()))
                     .build();
-            batchPoints.point(point1);
+            batchPoints.point(point1);                       //批量加入batchPoints
         }
         try {
-            influxDB.write(batchPoints);
+            influxDB.write(batchPoints);                     //写入influxdb
             isDone=true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,13 +66,13 @@ public class DBOperation {
         return isDone;
     }
 
-    public QueryResult query(String command) {
+    public QueryResult query(String command) {                    //查询操作
         Query query = new Query(command, dbName);
         QueryResult result = influxDB.query(query);
         return result;
     }
 
-    public long transform(String content) {
+    public long transform(String content) {                            //将时间转换为long类型
         JSONObject json = JSONObject.parseObject(content);
         BigDecimal t = new BigDecimal(json.get("time").toString());
         BigDecimal time = t.multiply(new BigDecimal(1000));
@@ -79,6 +81,7 @@ public class DBOperation {
         return tt;
     }
 
+    //获取influxdb连接，设置失败重试次数，若超过次数还连接不上，则关闭influxdb连接
     private InfluxDB connectDB(int times,String propsFile) {
         try {
             influxDB = connect(propsFile);
@@ -99,6 +102,7 @@ public class DBOperation {
         return influxDB;
     }
 
+    //获取influxdb连接
     private InfluxDB connect(String propsFile) throws SQLException {
         String url = getInfluxDBUrl(propsFile);
         influxDB = InfluxDBFactory.connect(url);
@@ -114,6 +118,7 @@ public class DBOperation {
         return influxDB;
     }
 
+    //获取influxdb url
     public String getInfluxDBUrl(String propsFile) {
         Properties props = Utils.getProperties(propsFile);
         return props.get("url").toString();

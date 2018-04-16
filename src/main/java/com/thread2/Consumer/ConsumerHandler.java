@@ -16,7 +16,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class ConsumerHandler implements Runnable {
 
     private final ConsumerRecords<String, String> records;
-    private ThreadLocal<Offset> offsets;
+    private ThreadLocal<Offset> offsets;                   //每个线程都有一个独立的offsets的副本
     private final LinkedBlockingQueue<Offset> offsetQueue;
     AtomicBoolean isDone = new AtomicBoolean(false);
     Offset offset ;
@@ -32,19 +32,20 @@ public class ConsumerHandler implements Runnable {
     @Override
     public void run() {
         for (TopicPartition partition : records.partitions()) {
-            Map<List<String>,Offset> recordMap = offset.getRecordListAndOffset(records,partition);
+            Map<List<String>,Offset> recordMap = offset.getRecordListAndOffset(records,partition); //获取<records，Offset>的map
             for(List<String> recordList:recordMap.keySet()) {
                 try {
-                    isDone.set(DBOperation.getInstance().InsertToInfluxDB(recordList));
+                    isDone.set(DBOperation.getInstance().InsertToInfluxDB(recordList)); //将该批记录插入时序数据库
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 if (isDone.get()) {
-                    offsets.set(recordMap.get(recordList));
+                    offsets.set(recordMap.get(recordList));      //设置offsets的值
+                    System.out.println(Thread.currentThread().getName() + "插入的该批记录的offset初始值为" + offsets.get().getInitOffset() + ",最后一条记录的偏移值为" + offsets.get().getLastOffset());
                     System.out.println(Thread.currentThread().getName() + "已将"+offsets.get().toString()+"加入offsetQueue");
                 }
             }
-            offsetQueue.add(offsets.get());
+            offsetQueue.add(offsets.get());    //将该线程所处理的offsets存到offsetQueue队列中待处理
         }
         System.out.println(Thread.currentThread().getName() + "执行完后，当前offsetQueue的大小为:" + offsetQueue.size());
         log.info(Thread.currentThread().getName() + "执行完后，当前offsetQueue的大小为[{}]", offsetQueue.size());

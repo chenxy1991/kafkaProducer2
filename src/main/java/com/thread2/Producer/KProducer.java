@@ -11,22 +11,23 @@ import java.math.BigDecimal;
 public class KProducer {
 
     private final Producer<String, String> producer;
-    private Logger log = LoggerFactory.getLogger("ProducerLog");
+    private Logger log = LoggerFactory.getLogger("ProducerLog");   //打印生产者日志
 
     public static int i=1;
 
+    //在构造函数中读取配置文件生成生产者实例
     public KProducer() {
         producer = new KafkaProducer<String, String>(Utils.getProperties("producer.properties"));
     }
 
     public void produce(String s){
-            JSONObject content=JSONObject.parseObject(s);
-            String topic = (String) content.get("table");
-            long timeStamp = new BigDecimal(content.get("time").toString()).multiply(new BigDecimal(1000)).longValue();
-            String key = timeStamp+"_"+"host="+content.get("host")+",region="+content.get("region");
+            JSONObject content=JSONObject.parseObject(s);    //将String类型的消息转换为json格式
+            String topic = (String) content.get("table");    //获取topic的名字
+            long timeStamp = new BigDecimal(content.get("time").toString()).multiply(new BigDecimal(1000)).longValue(); //将时间转换为long型
+            String key = timeStamp+"_"+"host="+content.get("host")+",region="+content.get("region");   //构造消息的key值，key为timestamp+tags(host,region)
             System.out.println(String.format("key = %s, value = %s",key,s));
-           /* 发送key为timestamp+tags的record*/
-           /* producer.send(new ProducerRecord<String, String>("cputest",key,s),new Callback() {
+           /* 调用producer的send方法发送key为timestamp+tags的record，s为消息*/
+            producer.send(new ProducerRecord<String, String>("cputest",key,s),new Callback() {
                 public void onCompletion(RecordMetadata metadata, Exception e) {
                     if(e != null) {
                         e.printStackTrace();
@@ -37,9 +38,9 @@ public class KProducer {
                         System.out.println(String.format("partition = %s, offset = %d", metadata.partition(), metadata.offset()));
                     }
                 }
-            });*/
-           /*采用消息编号作为key*/
-            System.out.println("生产者发送的第"+i+"条消息是"+s);
+            });
+           /*采用消息编号作为key，调用producer的send方法*/
+           /* System.out.println("生产者发送的第"+i+"条消息是"+s);
             log.info("生产者发送的第[{}]条消息是[{}]",i,s);
             producer.send(new ProducerRecord<String, String>("cpu", 0,Integer.toString(i++), s),new Callback() {
                 public void onCompletion(RecordMetadata metadata, Exception e) {
@@ -51,6 +52,6 @@ public class KProducer {
                         log.info("The offset of the record we just sent is:[{}]",metadata.offset());
                     }
                 }
-            });
+            });*/
         }
     }

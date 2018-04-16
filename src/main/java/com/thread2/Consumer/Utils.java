@@ -7,6 +7,7 @@ import java.io.*;
 import java.util.Map;
 import java.util.Properties;
 
+//工具类，包括读配置文件和写文件
 public class Utils {
 
     public static Properties getProperties(String filename){
@@ -42,6 +43,7 @@ public class Utils {
         return offset;
     }
 
+    //写入文件的内容格式为 partitionNum:offset
     public static void saveToFile(Map<TopicPartition, OffsetAndMetadata> commitMap, String filename) {
         BufferedWriter Buff = null;
         File file = new File(Offset.class.getResource("/"+filename).getPath());

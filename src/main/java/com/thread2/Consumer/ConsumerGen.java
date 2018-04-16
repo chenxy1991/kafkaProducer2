@@ -34,17 +34,18 @@ public class ConsumerGen {
 
     public void start(int threadNum) {
         this.isRunning.set(true);
-        LinkedBlockingQueue offsetQueue = new LinkedBlockingQueue<Offset>();
+        LinkedBlockingQueue offsetQueue = new LinkedBlockingQueue<Offset>(); //offsetQueue存放每个线程每次处理完的record的Offset的状态
+        //创建含有threadNum大小核心线程的线程池
         executor = new ThreadPoolExecutor(threadNum, threadNum, 2L, TimeUnit.SECONDS, new LinkedBlockingDeque<Runnable>(), new ThreadPoolExecutor.CallerRunsPolicy());
         while (isRunning.get()) {
             try {
-                ConsumerRecords<String, String> records = consumer.poll(1000);
+                ConsumerRecords<String, String> records = consumer.poll(1000);  //Consumer到kafka拉取消息,每隔一秒拉取一次
                 System.out.println("获取到的数据有:" + records.count());
                 log.info("获取到的数据有[{}]条", records.count());
                 if(!records.isEmpty()){
-                    executor.submit(new ConsumerHandler(records,offsetQueue));
+                    executor.submit(new ConsumerHandler(records,offsetQueue));  //将该次获取的记录提交给线程池中ConsumerHandler类型的线程去处理
                 }
-                commitOffsets(false, offsetQueue);
+                commitOffsets(false, offsetQueue);    //处理offsetQueue队列
             } catch (Exception e) {
                 commitOffsets(true, offsetQueue);
                 isRunning.set(false);
@@ -66,22 +67,22 @@ public class ConsumerGen {
         System.out.println("进入commitOffsets方法...");
         log.info("进入commitOffsets方法...");
         long finalOffset = 0L,minOffset = 0L;
-        List<PartitionInfo> partitionInfos = consumer.partitionsFor(topic);
+        List<PartitionInfo> partitionInfos = consumer.partitionsFor(topic);   //获取topic对应的所有partition的信息
         List<Offset> commitList = new ArrayList<Offset>();
         for (PartitionInfo s : partitionInfos) {
             TopicPartition partition = new TopicPartition(topic, s.partition());
             if (lastCommited.get(partition) == null) {
-                finalOffset = offset.getLastCommited(partition);
+                finalOffset = offset.getLastCommited(partition);             //获取上次该partition提交的offset
             } else {
                 finalOffset = lastCommited.get(partition);
             }
             System.out.println("lastCommited:"+finalOffset);
-            if (force.equals(true)) {
+            if (force.equals(true)) {                                       //若force为true，表示出现了exception，则将当前队列中的所有元素进行处理，遍历offsetQueue，将所有相同的partition中对应的offset取最小值进行提交
                 minOffset = offset.getMinOffset(partition, offsetQueue);
                 offset.commitOffset(partition,minOffset);
                 lastCommited.put(partition, minOffset);
             } else {
-                if (offsetQueue.size() >= 2) {
+                if (offsetQueue.size() >= 2) {                              //若force为false，则当offsetQueue大小超过2时处理一次
                     finalOffset = dealOffsetQueue(partition, commitList, offsetQueue, finalOffset);
                     offset.commitOffset(partition, finalOffset);
                     lastCommited.put(partition, finalOffset);
@@ -103,19 +104,20 @@ public class ConsumerGen {
             lastOffset = offsets.getLastOffset();
             System.out.println("initoffset是："+initOffset + ",lastoffset是：" + lastOffset);
             log.info("initoffset是[{}],lastoffset是[{}]",initOffset,lastOffset);
-            if (initOffset == finalOffset || initOffset == finalOffset+1) {
+            if (initOffset == finalOffset || initOffset == finalOffset+1) {     //遍历当前offsetQueue，将当前元素的初始值和当前partition上次提交的位移进行比较，若相等，将lastOffset设置为此次要提交的offset，直到不相等
                 System.out.println("true");
                 finalOffset = lastOffset;
-            } else if (lastOffset < finalOffset) {
+            } else if (lastOffset < finalOffset) {          //若当前元素的lastoffset已经小于已提交的offset，则在offsetQueue中删除该元素
                 offsetQueue.remove(offsets);
             } else {
-                commitList.add(offsets);
+                commitList.add(offsets);      //否则放到提交队列中，等待下一轮处理
             }
         }
         offsetQueue.addAll(commitList);
         return finalOffset;
     }
 
+    //关闭程序
     public void shutdown() {
         System.out.println("consumerGen正在关闭。。。");
         log.info("consumerGen正在关闭。。。");

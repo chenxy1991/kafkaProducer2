@@ -6,9 +6,11 @@ import org.influxdb.InfluxDB;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+//consumer启动类
 public class ConsumerMain {
 
     private static Logger log = LoggerFactory.getLogger("ConsumerLog");
+    //创建consumer，获取influxdb连接
     private static final Consumer<String, String> consumer = new KafkaConsumer<String, String>(Utils.getProperties("consumer.properties"));
     private static final InfluxDB influxDB = DBOperation.getInstance().getInfluxDB();
     private static final ConsumerGen consume = new ConsumerGen("cpu", influxDB, consumer);
@@ -27,6 +29,7 @@ public class ConsumerMain {
             }
         }));
 
+        //要启动两个worker线程
         consume.start(2);
     }
 
