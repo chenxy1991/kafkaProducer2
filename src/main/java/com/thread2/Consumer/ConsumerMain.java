@@ -13,7 +13,7 @@ public class ConsumerMain {
     //创建consumer，获取influxdb连接
     private static final Consumer<String, String> consumer = new KafkaConsumer<String, String>(Utils.getProperties("consumer.properties"));
     private static final InfluxDB influxDB = DBOperation.getInstance().getInfluxDB();
-    private static final ConsumerGen consume = new ConsumerGen("cpu", influxDB, consumer);
+    private static final ConsumerGen consume = new ConsumerGen("cput", influxDB, consumer);
 
 
     public static void main(String[] args) {

@@ -1,6 +1,11 @@
 package com.thread2.Consumer;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.jexl2.Expression;
+import org.apache.commons.jexl2.JexlContext;
+import org.apache.commons.jexl2.JexlEngine;
+import org.apache.commons.jexl2.MapContext;
 import org.influxdb.InfluxDB;
 import org.influxdb.InfluxDBFactory;
 import org.influxdb.dto.*;
@@ -9,7 +14,9 @@ import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -38,7 +45,7 @@ public class DBOperation {
     }
 
     //插入influxDB
-    public synchronized boolean InsertToInfluxDB(List<String> records) throws Exception {
+    /*public synchronized boolean InsertToInfluxDB(List<String> records) throws Exception {
         Boolean isDone = false;
         JSONObject record = JSONObject.parseObject(records.get(0));
         batchPoints = BatchPoints.database(dbName)
@@ -64,6 +71,54 @@ public class DBOperation {
         log.info("本次批量添加的记录有[{}]条", batchPoints.getPoints().size());
         batchPoints = null;
         return isDone;
+    }*/
+
+    public synchronized boolean InsertToInfluxDB(List<String> records) throws Exception {
+        Boolean isDone = false;
+        batchPoints=ConstructBatchPoints(batchPoints,dbName,records.get(0));
+        for (String content : records) {
+            int index = content.indexOf("[");
+            String time=content.substring(index+1, content.length() - 1).split(",")[0];
+            String metricValue= content.substring(index+1, content.length() - 1).split(",")[1];
+            long tt = transform(time);
+            Point point1 = Point.measurement("cput")
+                    .time(TimeUnit.NANOSECONDS.toNanos(tt), TimeUnit.NANOSECONDS)
+                    .addField("value", metricValue)
+                    .build();
+            batchPoints.point(point1);
+            System.out.println(point1.toString());
+        }
+        try {
+            influxDB.write(batchPoints);                     //写入influxdb
+            isDone=true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            isDone=false;
+        }
+        log.info("本次批量添加的记录有[{}]条", batchPoints.getPoints().size());
+        batchPoints = null;
+        return isDone;
+    }
+
+    public BatchPoints ConstructBatchPoints(BatchPoints batchPoints,String dbName,String record){
+        int index=record.indexOf("[");
+        Map<String,Object> map=new HashMap<String,Object>();
+        String[] metricArray=record.substring(0,index-1).split(",");
+        for(int i=0;i<metricArray.length;i++){
+            System.out.println(metricArray[i]);
+            String tagName=metricArray[i].split("=")[0];
+            String tagValue=metricArray[i].split("=")[1];
+            System.out.println(tagName+":"+tagValue);
+            map.put(tagName,tagValue);
+        }
+        batchPoints = BatchPoints.database(dbName)
+                .tag("cluster", map.get("cluster").toString())
+                .tag("instance",map.get("instance").toString())
+                .tag("host",map.get("host").toString())
+                .tag("proj",map.get("proj").toString())
+                .tag("job",map.get("job").toString())
+                .tag("m",map.get("m").toString()).build();
+       return batchPoints;
     }
 
     public QueryResult query(String command) {                    //查询操作
@@ -73,8 +128,7 @@ public class DBOperation {
     }
 
     public long transform(String content) {                            //将时间转换为long类型
-        JSONObject json = JSONObject.parseObject(content);
-        BigDecimal t = new BigDecimal(json.get("time").toString());
+        BigDecimal t = new BigDecimal(content);
         BigDecimal time = t.multiply(new BigDecimal(1000));
         String timestamp = time.toString().split("\\.")[0];
         long tt = Long.parseLong(timestamp);

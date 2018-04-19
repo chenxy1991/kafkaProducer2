@@ -1,14 +1,22 @@
 package com.thread2.start;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.AbstractHandler;
+
+
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.thread2.Producer.KProducer;
 
 public class Start {
@@ -31,16 +39,33 @@ public class Start {
             String line = null;
             StringBuffer json = new StringBuffer();
             BufferedReader content = httpServletRequest.getReader();
+            List<MetricUnit> messages=new ArrayList<MetricUnit>();
             while ((line = content.readLine()) != null) {
-                 dealReq(line);                   //处理请求内容
+                json.append(line);
             }
+            JSONObject object = JSON.parseObject(json.toString());
+            JSONObject data = (JSONObject) object.get("data");
+            JSONArray jsonArray = data.getJSONArray("result");
+            messages = JSON.parseArray(jsonArray.toJSONString(),MetricUnit.class);
+            dealReq(messages);
             content.close();
         }
     }
 
-    public static void dealReq(String s){
+    /*public static void dealReq(String s){
         try {
-            producer.produce(s);                 //调用produce方法发送消息到kafka
+           // producer.produce(s);                 //调用produce方法发送消息到kafka
+           // System.out.println(s);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }*/
+
+    public static void dealReq(List<MetricUnit> s){
+        try {
+            // producer.produce(s);                 //调用produce方法发送消息到kafka
+            // System.out.println(s.toString());
+            producer.produce(s);
         }catch(Exception e){
             e.printStackTrace();
         }

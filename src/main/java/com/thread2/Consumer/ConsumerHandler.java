@@ -36,6 +36,7 @@ public class ConsumerHandler implements Runnable {
             for(List<String> recordList:recordMap.keySet()) {
                 try {
                     isDone.set(DBOperation.getInstance().InsertToInfluxDB(recordList)); //将该批记录插入时序数据库
+                    //DBOperation.getInstance().InsertToInfluxDB(recordList);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
