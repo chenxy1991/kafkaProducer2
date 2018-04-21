@@ -73,42 +73,44 @@ public class DBOperation {
         return isDone;
     }*/
 
-    public synchronized boolean InsertToInfluxDB(List<String> records) throws Exception {
-        Boolean isDone = false;
-        batchPoints=ConstructBatchPoints(batchPoints,dbName,records.get(0));
-        for (String content : records) {
-            int index = content.indexOf("[");
-            String time=content.substring(index+1, content.length() - 1).split(",")[0];
-            String metricValue= content.substring(index+1, content.length() - 1).split(",")[1];
-            long tt = transform(time);
-            Point point1 = Point.measurement("cput")
-                    .time(TimeUnit.NANOSECONDS.toNanos(tt), TimeUnit.NANOSECONDS)
-                    .addField("value", metricValue)
-                    .build();
-            batchPoints.point(point1);
-            System.out.println(point1.toString());
+    public synchronized boolean InsertToInfluxDB(Map<List<String>,Offset> recordMap) throws Exception {
+        Boolean isDone = true;
+        String message = null;
+        long offset = 0l;
+        loop:for(List<String> recordList:recordMap.keySet()) {
+               for (String content : recordList) {
+                 System.out.println(recordList.size());
+                 message = content.split("&")[0];
+                 offset = Long.parseLong(content.split("&")[1]);
+                 Point point1 = ConstructPoints(message);
+                 System.out.println(Thread.currentThread().getName()+"当前处理的记录的offset为:"+offset+",记录为"+point1.toString());
+                 try {
+                    //influxDB.write(batchPoints);                     //写入influxdb
+                    influxDB.write(dbName,"autogen",point1);
+                    //isDone = true;
+                 } catch (Exception e) {
+                     System.out.println("出错啦！");
+                     e.printStackTrace();
+                    try {
+                        influxDB.write(point1);
+                    } catch (Exception e1) {
+                         recordMap.get(recordList).setLastOffset(offset);
+                         break loop;
+                    }
+                 }
+            }
         }
-        try {
-            influxDB.write(batchPoints);                     //写入influxdb
-            isDone=true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            isDone=false;
-        }
-        log.info("本次批量添加的记录有[{}]条", batchPoints.getPoints().size());
-        batchPoints = null;
-        return isDone;
+            return isDone;
     }
 
-    public BatchPoints ConstructBatchPoints(BatchPoints batchPoints,String dbName,String record){
+    /*public BatchPoints ConstructBatchPoints(BatchPoints batchPoints,String dbName,String record){
         int index=record.indexOf("[");
         Map<String,Object> map=new HashMap<String,Object>();
         String[] metricArray=record.substring(0,index-1).split(",");
         for(int i=0;i<metricArray.length;i++){
-            System.out.println(metricArray[i]);
+            log.info(metricArray[i]);
             String tagName=metricArray[i].split("=")[0];
             String tagValue=metricArray[i].split("=")[1];
-            System.out.println(tagName+":"+tagValue);
             map.put(tagName,tagValue);
         }
         batchPoints = BatchPoints.database(dbName)
@@ -119,7 +121,53 @@ public class DBOperation {
                 .tag("job",map.get("job").toString())
                 .tag("m",map.get("m").toString()).build();
        return batchPoints;
+    }*/
+
+    public Point ConstructPoints(String record) {
+        int lastindex = record.indexOf("[");
+        int clusterIndex = record.indexOf("instance");
+        String cluster = record.substring(0,clusterIndex-1).split("=")[0];
+        String clusterValue = record.substring(0,clusterIndex-1).split("=")[1];
+
+        System.out.println(cluster+":"+clusterValue);
+        String time = record.substring(lastindex + 1, record.length() - 1).split(",")[0];
+        String metricValue = record.substring(lastindex + 1, record.length() - 1).split(",")[1];
+        long tt = transform(time);
+        String[] metricArray=record.substring(clusterIndex,lastindex-1).split(",");
+        Map<String,String> map=new HashMap<String,String>();
+        map.put(cluster,clusterValue);
+        for(int i=0;i<metricArray.length;i++) {
+            System.out.println(metricArray[i]);
+            String tagName = metricArray[i].split("=")[0];
+            String tagValue = metricArray[i].split("=")[1];
+            if(!tagName.equals("metricName"))
+                map.put(tagName,tagValue);
+        }
+         Point point1 = Point.measurement("cput")
+                .time(TimeUnit.NANOSECONDS.toNanos(tt), TimeUnit.NANOSECONDS)
+                .tag(map)
+                .addField("value", metricValue)
+                .build();
+        return point1;
+        /*int index=record.indexOf("[");
+        Map<String,Object> map=new HashMap<String,Object>();
+        String[] metricArray=record.substring(0,index-1).split(",");
+        for(int i=0;i<metricArray.length;i++){
+            log.info(metricArray[i]);
+            String tagName=metricArray[i].split("=")[0];
+            String tagValue=metricArray[i].split("=")[1];
+            map.put(tagName,tagValue);
+        }
+        batchPoints = BatchPoints.database(dbName)
+                .tag("cluster", map.get("cluster").toString())
+                .tag("instance",map.get("instance").toString())
+                .tag("host",map.get("host").toString())
+                .tag("proj",map.get("proj").toString())
+                .tag("job",map.get("job").toString())
+                .tag("m",map.get("m").toString()).build();
+        return batchPoints;*/
     }
+
 
     public QueryResult query(String command) {                    //查询操作
         Query query = new Query(command, dbName);

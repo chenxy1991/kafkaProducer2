@@ -63,6 +63,7 @@ public class KProducer {
             System.out.println(message.toString());
             String timestamp = message.getValue().split(",")[0].replace("[","");
             String tags = message.getTags();
+            String topic = message.getMetricName();
             long time = new BigDecimal(timestamp).multiply(new BigDecimal(1000)).longValue();
             String key=time+"_"+tags;
             System.out.println(key);

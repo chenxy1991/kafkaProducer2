@@ -5,6 +5,8 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.OffsetAndMetadata;
 import org.apache.kafka.common.TopicPartition;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -25,6 +27,8 @@ public class Offset{
     private long lastOffset;
     private TopicPartition partition;
     private Consumer<String, String> consumer;
+    private Logger log = LoggerFactory.getLogger("ConsumerLog");
+
 
     public Offset(){}
 
@@ -50,6 +54,14 @@ public class Offset{
         return this.lastOffset;
     }
 
+    public void setInitOffset(long initOffset) {
+        this.initOffset = initOffset;
+    }
+
+    public void setLastOffset(long lastOffset) {
+        this.lastOffset = lastOffset;
+    }
+
     @Override
     public String toString(){
           return "["+"partition:"+this.partition.partition()+","+this.getInitOffset() +"," + this.getLastOffset()+"]";
@@ -62,9 +74,10 @@ public class Offset{
         List<String> recordList=new ArrayList<String>();
         Offset offset = new Offset(partition,partitionRecords.get(0).offset(),partitionRecords.get(partitionRecords.size()-1).offset());
         for (ConsumerRecord<String, String> record : partitionRecords) {
-            recordList.add(record.value());
+            recordList.add(record.value()+"&"+record.offset());
         }
         System.out.println(Thread.currentThread().getName() + "获取数据" + recordList.size() + "条");
+        System.out.println(Thread.currentThread().getName() + "获取的记录的offset初始值为" + offset.getInitOffset() + ",最后一条记录的偏移值为" + offset.getLastOffset());
         recordsAndOffset.put(recordList,offset);
         return recordsAndOffset;
     }
@@ -75,9 +88,9 @@ public class Offset{
         OffsetAndMetadata offsetAndMetadata = consumer.committed(partition);
         if (offsetAndMetadata != null) {
             finalOffset = offsetAndMetadata.offset();
-            System.out.println("上次提交的offset是：" + finalOffset);
+            System.out.println("partition"+partition.partition()+"上次提交的offset是：" + finalOffset);
         } else {
-            finalOffset = Utils.readFromFile(partition, "offset.txt");
+            finalOffset = Utils.readFromFile(partition,"offset.txt");
         }
         return finalOffset;
     }
@@ -97,13 +110,15 @@ public class Offset{
     }
 
     //将当前消费到的offset进行提交
-    public void commitOffset(TopicPartition partition,long commitOffset){
+    public Map<TopicPartition,OffsetAndMetadata> commitOffset(TopicPartition partition,long commitOffset){
         OffsetAndMetadata commitOffsetAndMetadata = new OffsetAndMetadata(commitOffset + 1);
-        System.out.println("此次要提交的offset是:" + commitOffset);
+        System.out.println("此次要提交的partition是"+ partition.partition()+",offset是:" + commitOffset);
+        log.info("partition[{}]此次要提交的offset是:",partition.partition(),commitOffset);
         Map<TopicPartition, OffsetAndMetadata> commitMap = new HashMap<>();
         commitMap.put(partition, commitOffsetAndMetadata);
         consumer.commitSync(commitMap);
-        Utils.saveToFile(commitMap, "offset.txt");
+        return commitMap;
+       // Utils.saveToFile(commitMap, "offset.txt");
     }
 
 }

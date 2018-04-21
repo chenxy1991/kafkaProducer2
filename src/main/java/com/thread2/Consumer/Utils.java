@@ -3,7 +3,10 @@ package com.thread2.Consumer;
 import org.apache.kafka.clients.consumer.OffsetAndMetadata;
 import org.apache.kafka.common.TopicPartition;
 
+import java.awt.*;
 import java.io.*;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -44,14 +47,15 @@ public class Utils {
     }
 
     //写入文件的内容格式为 partitionNum:offset
-    public static void saveToFile(Map<TopicPartition, OffsetAndMetadata> commitMap, String filename) {
+    public static void saveToFile(Map<TopicPartition,Map<TopicPartition, OffsetAndMetadata>> commitMaps, String filename) {
         BufferedWriter Buff = null;
         File file = new File(Offset.class.getResource("/"+filename).getPath());
         try {
             Buff = new BufferedWriter(new FileWriter(file, false));
-            for (TopicPartition partition : commitMap.keySet()) {
-                Buff.write(partition.partition() + ":" + String.valueOf(commitMap.get(partition).offset()));
-                Buff.write("\n");
+            for(TopicPartition partition : commitMaps.keySet() ) {
+                    System.out.println("开始写入文件.....");
+                    Buff.write(partition.partition() + ":" + String.valueOf(commitMaps.get(partition).get(partition).offset()));
+                    Buff.write("\n");
             }
             Buff.close();
         } catch (IOException e) {

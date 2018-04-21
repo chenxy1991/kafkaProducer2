@@ -1,5 +1,6 @@
 package com.thread2.Mytest;
 
+import ch.qos.logback.core.encoder.EchoEncoder;
 import com.thread2.Consumer.ConsumerGen;
 
 import java.io.*;
@@ -46,9 +47,21 @@ public class MyThread implements Runnable {
     }
 
     public static void main(String[] args) {
-        Map<Integer,String> commitMap=new HashMap<>();
-        for(Integer m:commitMap.keySet()){
-            System.out.println("----"+m+":"+commitMap.get(m));
+      /*  Map<Integer,String> commitMap=new HashMap<>();
+        commitMap.put(1,"cxy");
+        commitMap.put(2,"gyt");
+
+        dealWith(commitMap);
+
+        System.out.println(commitMap.get(2));*/
+        int j=4;
+        for(int i=0;i<3;i++){
+            try {
+                int a = 1 / j;
+                j--;
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         }
 
        /* MyThread[] mts = new MyThread[3];
@@ -64,6 +77,10 @@ public class MyThread implements Runnable {
             System.out.println("cxy");
         }*/
        // readFromFile(1,"/offset.txt");
+    }
+
+    public static void dealWith(Map<Integer, String> commitMap){
+        commitMap.put(1,"lsj");
     }
 
         /*MyThread thread = new MyThread();

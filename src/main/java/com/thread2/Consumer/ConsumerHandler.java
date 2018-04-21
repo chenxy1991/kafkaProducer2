@@ -35,14 +35,14 @@ public class ConsumerHandler implements Runnable {
             Map<List<String>,Offset> recordMap = offset.getRecordListAndOffset(records,partition); //获取<records，Offset>的map
             for(List<String> recordList:recordMap.keySet()) {
                 try {
-                    isDone.set(DBOperation.getInstance().InsertToInfluxDB(recordList)); //将该批记录插入时序数据库
+                    //isDone.set(DBOperation.getInstance().InsertToInfluxDB(recordList)); //将该批记录插入时序数据库
+                    isDone.set(DBOperation.getInstance().InsertToInfluxDB(recordMap));
                     //DBOperation.getInstance().InsertToInfluxDB(recordList);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 if (isDone.get()) {
                     offsets.set(recordMap.get(recordList));      //设置offsets的值
-                    System.out.println(Thread.currentThread().getName() + "插入的该批记录的offset初始值为" + offsets.get().getInitOffset() + ",最后一条记录的偏移值为" + offsets.get().getLastOffset());
                     System.out.println(Thread.currentThread().getName() + "已将"+offsets.get().toString()+"加入offsetQueue");
                 }
             }
