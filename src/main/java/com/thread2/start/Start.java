@@ -19,6 +19,8 @@ import java.util.List;
 
 import com.thread2.Producer.KProducer;
 
+//通过python脚本向自定义的jetty服务器转发http请求，参数为从promethus中获取的数据
+
 public class Start {
 
     //定义生产者

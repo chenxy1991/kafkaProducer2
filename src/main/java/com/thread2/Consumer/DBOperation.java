@@ -85,9 +85,8 @@ public class DBOperation {
                  Point point1 = ConstructPoints(message);
                  System.out.println(Thread.currentThread().getName()+"当前处理的记录的offset为:"+offset+",记录为"+point1.toString());
                  try {
-                    //influxDB.write(batchPoints);                     //写入influxdb
+                     //写入influxdb
                     influxDB.write(dbName,"autogen",point1);
-                    //isDone = true;
                  } catch (Exception e) {
                      System.out.println("出错啦！");
                      e.printStackTrace();
@@ -100,28 +99,8 @@ public class DBOperation {
                  }
             }
         }
-            return isDone;
+         return isDone;
     }
-
-    /*public BatchPoints ConstructBatchPoints(BatchPoints batchPoints,String dbName,String record){
-        int index=record.indexOf("[");
-        Map<String,Object> map=new HashMap<String,Object>();
-        String[] metricArray=record.substring(0,index-1).split(",");
-        for(int i=0;i<metricArray.length;i++){
-            log.info(metricArray[i]);
-            String tagName=metricArray[i].split("=")[0];
-            String tagValue=metricArray[i].split("=")[1];
-            map.put(tagName,tagValue);
-        }
-        batchPoints = BatchPoints.database(dbName)
-                .tag("cluster", map.get("cluster").toString())
-                .tag("instance",map.get("instance").toString())
-                .tag("host",map.get("host").toString())
-                .tag("proj",map.get("proj").toString())
-                .tag("job",map.get("job").toString())
-                .tag("m",map.get("m").toString()).build();
-       return batchPoints;
-    }*/
 
     public Point ConstructPoints(String record) {
         int lastindex = record.indexOf("[");
@@ -149,23 +128,6 @@ public class DBOperation {
                 .addField("value", metricValue)
                 .build();
         return point1;
-        /*int index=record.indexOf("[");
-        Map<String,Object> map=new HashMap<String,Object>();
-        String[] metricArray=record.substring(0,index-1).split(",");
-        for(int i=0;i<metricArray.length;i++){
-            log.info(metricArray[i]);
-            String tagName=metricArray[i].split("=")[0];
-            String tagValue=metricArray[i].split("=")[1];
-            map.put(tagName,tagValue);
-        }
-        batchPoints = BatchPoints.database(dbName)
-                .tag("cluster", map.get("cluster").toString())
-                .tag("instance",map.get("instance").toString())
-                .tag("host",map.get("host").toString())
-                .tag("proj",map.get("proj").toString())
-                .tag("job",map.get("job").toString())
-                .tag("m",map.get("m").toString()).build();
-        return batchPoints;*/
     }
 
 

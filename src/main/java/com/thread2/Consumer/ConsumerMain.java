@@ -33,15 +33,4 @@ public class ConsumerMain {
         consume.start(2);
     }
 
-
-     /* final testThread thread=new testThread();
-        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-            @Override
-            public void run()
-            {
-                System.out.println("Execute Hook.....");
-                thread.stop();
-            }
-        }));
-        thread.start(2);*/
 }

@@ -2,19 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a05bc1e3-eaf5-4289-ab29-eeda5694f2fb" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thread2/start/HttpRequest.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/thread2/Consumer/ConsumerGen.java" afterPath="$PROJECT_DIR$/src/main/java/com/thread2/Consumer/ConsumerGen.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/thread2/Consumer/ConsumerHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/thread2/Consumer/ConsumerHandler.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thread2/Consumer/ConsumerMain.java" afterPath="$PROJECT_DIR$/src/main/java/com/thread2/Consumer/ConsumerMain.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/thread2/Consumer/DBOperation.java" afterPath="$PROJECT_DIR$/src/main/java/com/thread2/Consumer/DBOperation.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/thread2/Consumer/Offset.java" afterPath="$PROJECT_DIR$/src/main/java/com/thread2/Consumer/Offset.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/thread2/Consumer/Utils.java" afterPath="$PROJECT_DIR$/src/main/java/com/thread2/Consumer/Utils.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/thread2/Mytest/MyThread.java" afterPath="$PROJECT_DIR$/src/main/java/com/thread2/Mytest/MyThread.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/thread2/Producer/KProducer.java" afterPath="$PROJECT_DIR$/src/main/java/com/thread2/Producer/KProducer.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thread2/start/Start.java" afterPath="$PROJECT_DIR$/src/main/java/com/thread2/start/Start.java" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/thread2/Consumer/ConsumerGen.class" afterPath="$PROJECT_DIR$/target/classes/com/thread2/Consumer/ConsumerGen.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/thread2/Consumer/ConsumerHandler.class" afterPath="$PROJECT_DIR$/target/classes/com/thread2/Consumer/ConsumerHandler.class" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/thread2/Consumer/DBOperation.class" afterPath="$PROJECT_DIR$/target/classes/com/thread2/Consumer/DBOperation.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/thread2/Producer/KProducer$1.class" afterPath="$PROJECT_DIR$/target/classes/com/thread2/Producer/KProducer$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/thread2/Producer/KProducer.class" afterPath="$PROJECT_DIR$/target/classes/com/thread2/Producer/KProducer.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/offset.txt" afterPath="$PROJECT_DIR$/target/classes/offset.txt" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/thread2/Consumer/Offset.class" afterPath="$PROJECT_DIR$/target/classes/com/thread2/Consumer/Offset.class" />
+      <change beforePath="$PROJECT_DIR$/target/kafka.war" afterPath="$PROJECT_DIR$/target/kafka.war" />
+      <change beforePath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/Consumer/ConsumerGen.class" afterPath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/Consumer/ConsumerGen.class" />
+      <change beforePath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/Consumer/ConsumerHandler.class" afterPath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/Consumer/ConsumerHandler.class" />
+      <change beforePath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/Consumer/DBOperation.class" afterPath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/Consumer/DBOperation.class" />
+      <change beforePath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/Consumer/Offset.class" afterPath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/Consumer/Offset.class" />
+      <change beforePath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/Consumer/Utils.class" afterPath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/Consumer/Utils.class" />
+      <change beforePath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/Mytest/MyThread.class" afterPath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/com/thread2/Mytest/MyThread.class" />
+      <change beforePath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/offset.txt" afterPath="$PROJECT_DIR$/target/kafka/WEB-INF/classes/offset.txt" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.thread2.Consumer.ConsumerGenTest.xml" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.thread2.Consumer.ConsumerGenTest.xml" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.thread2.Producer.KProducerTest.xml" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.thread2.Producer.KProducerTest.xml" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.thread2.Consumer.ConsumerGenTest.txt" afterPath="$PROJECT_DIR$/target/surefire-reports/com.thread2.Consumer.ConsumerGenTest.txt" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.thread2.Producer.KProducerTest.txt" afterPath="$PROJECT_DIR$/target/surefire-reports/com.thread2.Producer.KProducerTest.txt" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -30,52 +43,55 @@
       <file leaf-file-name="ConsumerMain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Consumer/ConsumerMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="27" column="33" lean-forward="false" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
+            <state relative-caret-position="0">
+              <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Start.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Start.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/start/Start.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="67" column="24" lean-forward="false" selection-start-line="67" selection-start-column="24" selection-end-line="67" selection-end-column="24" />
+            <state relative-caret-position="459">
+              <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
               <folding>
-                <element signature="e#1354#1366#0" expanded="true" />
+                <element signature="class#ReqHandler#0;class#Start#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DBOperation.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Consumer/DBOperation.java">
+      <file leaf-file-name="HttpRequest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/start/HttpRequest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="88" column="52" lean-forward="false" selection-start-line="88" selection-start-column="52" selection-end-line="88" selection-end-column="52" />
+            <state relative-caret-position="378">
+              <caret line="60" column="4" lean-forward="false" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="4" />
               <folding>
-                <element signature="e#909#910#0" expanded="true" />
-                <element signature="e#964#965#0" expanded="true" />
-                <element signature="e#1129#1130#0" expanded="true" />
-                <element signature="e#1179#1180#0" expanded="true" />
-                <element signature="e#1216#1217#0" expanded="true" />
-                <element signature="e#1247#1248#0" expanded="true" />
-                <element signature="e#5505#5520#0" expanded="true" />
+                <element signature="method#main#0;class#HttpRequest#0" expanded="false" />
+                <element signature="method#dealReq#0;class#HttpRequest#0" expanded="false" />
+                <element signature="method#getMessage#0;class#HttpRequest#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyThread.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Mytest/MyThread.java">
+      <file leaf-file-name="PrintStream.java" pinned="false" current-in-tab="false">
+        <entry file="jar://D:/java1.8/jdk1.8/src.zip!/java/io/PrintStream.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="62" column="36" lean-forward="true" selection-start-line="62" selection-start-column="36" selection-end-line="62" selection-end-column="36" />
-              <folding>
-                <element signature="e#2574#2575#0" expanded="true" />
-                <element signature="e#2612#2613#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="130">
+              <caret line="800" column="6" lean-forward="true" selection-start-line="800" selection-start-column="6" selection-end-line="801" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4">
+              <caret line="64" column="13" lean-forward="false" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -83,8 +99,8 @@
       <file leaf-file-name="ConsumerHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Consumer/ConsumerHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="45" column="77" lean-forward="false" selection-start-line="45" selection-start-column="75" selection-end-line="45" selection-end-column="77" />
+            <state relative-caret-position="1134">
+              <caret line="51" column="1" lean-forward="false" selection-start-line="51" selection-start-column="1" selection-end-line="51" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -93,12 +109,22 @@
       <file leaf-file-name="ConsumerGen.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Consumer/ConsumerGen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="99" column="19" lean-forward="true" selection-start-line="99" selection-start-column="19" selection-end-line="99" selection-end-column="19" />
+            <state relative-caret-position="3645">
+              <caret line="143" column="9" lean-forward="false" selection-start-line="143" selection-start-column="9" selection-end-line="143" selection-end-column="9" />
               <folding>
-                <element signature="e#6965#6966#0" expanded="true" />
-                <element signature="e#7006#7007#0" expanded="true" />
+                <element signature="e#6779#6780#0" expanded="true" />
+                <element signature="e#6820#6821#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="offset.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/target/classes/offset.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="81">
+              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -106,8 +132,8 @@
       <file leaf-file-name="Offset.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Consumer/Offset.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="117" column="58" lean-forward="false" selection-start-line="117" selection-start-column="58" selection-end-line="117" selection-end-column="58" />
+            <state relative-caret-position="131">
+              <caret line="91" column="41" lean-forward="false" selection-start-line="91" selection-start-column="41" selection-end-line="91" selection-end-column="41" />
               <folding>
                 <element signature="e#1467#1468#0" expanded="true" />
                 <element signature="e#1511#1512#0" expanded="true" />
@@ -119,21 +145,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="offset.txt" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/target/classes/offset.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="81">
-              <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Utils.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Consumer/Utils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="56" column="125" lean-forward="false" selection-start-line="56" selection-start-column="125" selection-end-line="56" selection-end-column="125" />
+            <state relative-caret-position="1188">
+              <caret line="52" column="13" lean-forward="false" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -151,8 +167,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>1524014167.251</find>
-      <find>partition</find>
       <find>132.121.197.87:8022,</find>
       <find>132.121.197.95</find>
       <find>132.121.197.96</find>
@@ -176,11 +190,13 @@
       <find>saveList</find>
       <find>开始写入</find>
       <find>上次提交</find>
-      <find>开始</find>
       <find>此次要提交的partition</find>
-      <find>此次</find>
       <find>此次要提交的partition是2</find>
+      <find>此次</find>
       <find>此次要提交的partition是1</find>
+      <find>开始</find>
+      <find>partition = 0</find>
+      <find>http</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -230,16 +246,18 @@
         <option value="$PROJECT_DIR$/src/main/java/com/thread2/Producer/ProducerPartitioner.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/thread2/Serializer/MetricSerializer.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thread2/Consumer/ConsumerMain.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thread2/start/Start.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/thread2/Producer/KProducer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/thread2/Mytest/MyThread.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thread2/Consumer/ConsumerHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thread2/Consumer/Offset.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thread2/Consumer/DBOperation.java" />
         <option value="$PROJECT_DIR$/target/classes/offset.txt" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thread2/Consumer/ConsumerGen.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/thread2/Consumer/Utils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/thread2/Consumer/ConsumerGen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/thread2/Consumer/ConsumerHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/thread2/Consumer/DBOperation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/thread2/Consumer/Offset.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/thread2/Consumer/ConsumerMain.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/thread2/start/HttpClient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/thread2/start/Start.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/thread2/start/HttpRequest.java" />
       </list>
     </option>
   </component>
@@ -283,8 +301,8 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-116" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-11" />
     <option name="width" value="1918" />
     <option name="height" value="1018" />
   </component>
@@ -340,6 +358,132 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="kafkaProducer2" type="58d84e3e:PackageViewProjectNode" />
+              <item name="main" type="616d4139:PackageViewModuleNode" />
+            </path>
+            <path>
+              <item name="kafkaProducer2" type="58d84e3e:PackageViewProjectNode" />
+              <item name="main" type="616d4139:PackageViewModuleNode" />
+              <item name="com" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="kafkaProducer2" type="58d84e3e:PackageViewProjectNode" />
+              <item name="main" type="616d4139:PackageViewModuleNode" />
+              <item name="com" type="1f31426a:PackageElementNode" />
+              <item name="thread2" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="kafkaProducer2" type="58d84e3e:PackageViewProjectNode" />
+              <item name="main" type="616d4139:PackageViewModuleNode" />
+              <item name="com" type="1f31426a:PackageElementNode" />
+              <item name="thread2" type="1f31426a:PackageElementNode" />
+              <item name="ConsumerThread" type="1f31426a:PackageElementNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="thread2" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="thread2" type="462c0819:PsiDirectoryNode" />
+              <item name="Consumer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="thread2" type="462c0819:PsiDirectoryNode" />
+              <item name="start" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope">
         <subPane subId="Project Files">
           <expand>
@@ -401,161 +545,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="thread" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="thread2" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="thread2" type="462c0819:PsiDirectoryNode" />
-              <item name="Consumer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="thread2" type="462c0819:PsiDirectoryNode" />
-              <item name="Mytest" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="thread2" type="462c0819:PsiDirectoryNode" />
-              <item name="Producer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="thread2" type="462c0819:PsiDirectoryNode" />
-              <item name="start" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kafkaProducer2" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kafkaProducer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="kafkaProducer2" type="58d84e3e:PackageViewProjectNode" />
-              <item name="main" type="616d4139:PackageViewModuleNode" />
-            </path>
-            <path>
-              <item name="kafkaProducer2" type="58d84e3e:PackageViewProjectNode" />
-              <item name="main" type="616d4139:PackageViewModuleNode" />
-              <item name="com" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="kafkaProducer2" type="58d84e3e:PackageViewProjectNode" />
-              <item name="main" type="616d4139:PackageViewModuleNode" />
-              <item name="com" type="1f31426a:PackageElementNode" />
-              <item name="thread2" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="kafkaProducer2" type="58d84e3e:PackageViewProjectNode" />
-              <item name="main" type="616d4139:PackageViewModuleNode" />
-              <item name="com" type="1f31426a:PackageElementNode" />
-              <item name="thread2" type="1f31426a:PackageElementNode" />
-              <item name="ConsumerThread" type="1f31426a:PackageElementNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -603,7 +592,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Start">
+  <component name="RunManager" selected="Application.HttpRequest">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -624,6 +613,25 @@
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="kafkaProducer2" />
+      <envs />
+    </configuration>
+    <configuration name="HttpRequest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.thread2.start.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="com.thread2.start.HttpRequest" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
@@ -701,31 +709,6 @@
       <module name="" />
       <envs />
     </configuration>
-    <configuration name="KProducerTest.testSetUp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.thread2.Producer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="kafkaProducer2" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.thread2.Producer" />
-      <option name="MAIN_CLASS_NAME" value="com.thread2.Producer.KProducerTest" />
-      <option name="METHOD_NAME" value="testSetUp" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -800,18 +783,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.ConsumerMain" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.KProducerTest.testSetUp" />
-      <item index="2" class="java.lang.String" itemvalue="Application.Start" />
-      <item index="3" class="java.lang.String" itemvalue="Application.MyThread" />
-      <item index="4" class="java.lang.String" itemvalue="Application.KafkaStream" />
+      <item index="1" class="java.lang.String" itemvalue="Application.Start" />
+      <item index="2" class="java.lang.String" itemvalue="Application.MyThread" />
+      <item index="3" class="java.lang.String" itemvalue="Application.KafkaStream" />
+      <item index="4" class="java.lang.String" itemvalue="Application.HttpRequest" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.Start" />
+        <item index="0" class="java.lang.String" itemvalue="Application.HttpRequest" />
         <item index="1" class="java.lang.String" itemvalue="Application.ConsumerMain" />
-        <item index="2" class="java.lang.String" itemvalue="Application.MyThread" />
-        <item index="3" class="java.lang.String" itemvalue="Application.KafkaStream" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.KProducerTest.testSetUp" />
+        <item index="2" class="java.lang.String" itemvalue="Application.Start" />
+        <item index="3" class="java.lang.String" itemvalue="Application.MyThread" />
+        <item index="4" class="java.lang.String" itemvalue="Application.KafkaStream" />
       </list>
     </recent_temporary>
   </component>
@@ -848,7 +831,8 @@
       <workItem from="1522681972681" duration="17072000" />
       <workItem from="1523177861060" duration="64721000" />
       <workItem from="1523492916011" duration="31309000" />
-      <workItem from="1523843405666" duration="116346000" />
+      <workItem from="1523843405666" duration="124648000" />
+      <workItem from="1524320786639" duration="2537000" />
     </task>
     <servers />
   </component>
@@ -864,10 +848,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="476788000" />
+    <option name="totallyTimeSpent" value="487627000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
+    <frame x="-11" y="0" width="1918" height="1018" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -877,16 +862,15 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39618137" sideWeight="0.3234341" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15658747" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15864332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32696897" sideWeight="0.6765659" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27395576" sideWeight="0.6765659" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293556" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23056155" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25765863" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293556" sideWeight="0.6522678" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -898,6 +882,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293556" sideWeight="0.6522678" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -944,35 +929,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://D:/Local/mavenpool/org/apache/kafka/kafka-clients/0.11.0.2/kafka-clients-0.11.0.2.jar!/org/apache/kafka/clients/consumer/KafkaConsumer.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="880">
-          <caret line="114" column="0" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Local/mavenpool/org/apache/kafka/kafka-clients/0.11.0.2/kafka-clients-0.11.0.2.jar!/org/apache/kafka/clients/consumer/Consumer.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="35" column="9" lean-forward="false" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/target/classes/consumer.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="1" column="10" lean-forward="false" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/com/thread2/Producer/KProducerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="30" column="17" lean-forward="false" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://D:/Local/mavenpool/org/apache/kafka/kafka-clients/0.11.0.2/kafka-clients-0.11.0.2.jar!/org/apache/kafka/common/Cluster.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -1037,10 +993,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="265">
           <caret line="86" column="5" lean-forward="true" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
-          <folding>
-            <element signature="e#1819#1820#0" expanded="false" />
-            <element signature="e#1852#1853#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1048,7 +1000,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-551">
           <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1098,11 +1049,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
           <caret line="13" column="41" lean-forward="false" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#351#352#0" expanded="false" />
-            <element signature="e#399#400#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1118,7 +1064,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="513">
           <caret line="20" column="22" lean-forward="false" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1126,85 +1071,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="402">
           <caret line="33" column="41" lean-forward="false" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/start/MetricAttibutes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/start/AttributeForMetric.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="7" column="6" lean-forward="false" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/start/MetricAttibutes.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/start/AttributeForMetric.java" />
     <entry file="jar://D:/Local/mavenpool/com/alibaba/fastjson/1.2.42/fastjson-1.2.42.jar!/com/alibaba/fastjson/JSONObject.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="181">
           <caret line="114" column="0" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
-          <folding>
-            <marker date="1518615980511" expanded="false" signature="3:117" ph="/.../" />
-            <marker date="1518615980511" expanded="true" signature="560:583" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="661:684" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="725:748" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="793:816" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="878:901" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="925:948" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="979:1002" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="1057:1080" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="1139:1162" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="1218:1241" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="1322:1345" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="1424:1447" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="1524:1547" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="1627:1650" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="1751:1774" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="1838:1861" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="1912:1935" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="1994:2017" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="2075:2098" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="2151:2174" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="2234:2257" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="2312:2335" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="2399:2422" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="2473:2496" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="2554:2577" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="2630:2653" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="2713:2736" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="2791:2814" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="2876:2899" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="2956:2979" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="3049:3072" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="3142:3165" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="3227:3250" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="3308:3331" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="3391:3414" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="3481:3504" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="3584:3607" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="3708:3731" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="3828:3851" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="3981:4004" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="4030:4053" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="4112:4135" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="4194:4217" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="4297:4320" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="4374:4397" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="4458:4481" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="4575:4598" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="4636:4659" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="4709:4732" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="4760:4783" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="4929:4952" ph="{}" />
-            <marker date="1518615980511" expanded="true" signature="5028:5051" ph="{}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1212,23 +1087,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="148">
           <caret line="142" column="28" lean-forward="false" selection-start-line="142" selection-start-column="28" selection-end-line="142" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/start/Value.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="5" column="30" lean-forward="false" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/start/Value.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Producer/ProducerPartitioner.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
           <caret line="14" column="48" lean-forward="false" selection-start-line="14" selection-start-column="45" selection-end-line="14" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1236,7 +1102,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="7" column="56" lean-forward="false" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1244,25 +1109,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="7" column="71" lean-forward="false" selection-start-line="7" selection-start-column="55" selection-end-line="7" selection-end-column="71" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Serializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Serializer.java" />
     <entry file="jar://D:/Local/mavenpool/org/apache/kafka/kafka-clients/0.11.0.2/kafka-clients-0.11.0.2.jar!/org/apache/kafka/common/serialization/Deserializer.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="9" column="6" lean-forward="false" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-          <folding>
-            <marker date="1518500771259" expanded="false" signature="3:117" ph="/.../" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1270,7 +1124,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="13" column="32" lean-forward="false" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1278,26 +1131,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Serializer/MetricSerializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="7" column="44" lean-forward="true" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="62" column="17" lean-forward="false" selection-start-line="62" selection-start-column="17" selection-end-line="62" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Serializer/MetricSerializer.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/start/MetricUnit.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
@@ -1322,32 +1159,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/start/Start.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="67" column="24" lean-forward="false" selection-start-line="67" selection-start-column="24" selection-end-line="67" selection-end-column="24" />
-          <folding>
-            <element signature="e#1354#1366#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Mytest/MyThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="371">
-          <caret line="62" column="36" lean-forward="true" selection-start-line="62" selection-start-column="36" selection-end-line="62" selection-end-column="36" />
-          <folding>
-            <element signature="e#2574#2575#0" expanded="true" />
-            <element signature="e#2612#2613#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Consumer/ConsumerMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="27" column="33" lean-forward="false" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
-          <folding />
+          <caret line="62" column="36" lean-forward="false" selection-start-line="62" selection-start-column="36" selection-end-line="62" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -1355,57 +1170,79 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="4" lean-forward="false" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Consumer/DBOperation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="88" column="52" lean-forward="false" selection-start-line="88" selection-start-column="52" selection-end-line="88" selection-end-column="52" />
+        <state relative-caret-position="2106">
+          <caret line="102" column="5" lean-forward="false" selection-start-line="102" selection-start-column="5" selection-end-line="102" selection-end-column="5" />
           <folding>
-            <element signature="e#909#910#0" expanded="true" />
-            <element signature="e#964#965#0" expanded="true" />
-            <element signature="e#1129#1130#0" expanded="true" />
-            <element signature="e#1179#1180#0" expanded="true" />
-            <element signature="e#1216#1217#0" expanded="true" />
-            <element signature="e#1247#1248#0" expanded="true" />
-            <element signature="e#5505#5520#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Consumer/ConsumerHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="45" column="77" lean-forward="false" selection-start-line="45" selection-start-column="75" selection-end-line="45" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Consumer/ConsumerGen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="99" column="19" lean-forward="true" selection-start-line="99" selection-start-column="19" selection-end-line="99" selection-end-column="19" />
-          <folding>
-            <element signature="e#6965#6966#0" expanded="true" />
-            <element signature="e#7006#7007#0" expanded="true" />
+            <element signature="e#909#910#0" expanded="false" />
+            <element signature="e#964#965#0" expanded="false" />
+            <element signature="e#1129#1130#0" expanded="false" />
+            <element signature="e#1179#1180#0" expanded="false" />
+            <element signature="e#1216#1217#0" expanded="false" />
+            <element signature="e#1247#1248#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Consumer/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="56" column="125" lean-forward="false" selection-start-line="56" selection-start-column="125" selection-end-line="56" selection-end-column="125" />
+        <state relative-caret-position="1188">
+          <caret line="52" column="13" lean-forward="false" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Consumer/ConsumerMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Consumer/ConsumerHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1134">
+          <caret line="51" column="1" lean-forward="false" selection-start-line="51" selection-start-column="1" selection-end-line="51" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Consumer/ConsumerGen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3645">
+          <caret line="143" column="9" lean-forward="false" selection-start-line="143" selection-start-column="9" selection-end-line="143" selection-end-column="9" />
+          <folding>
+            <element signature="e#6779#6780#0" expanded="true" />
+            <element signature="e#6820#6821#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/HttpClient.java" />
+    <entry file="jar://D:/Local/mavenpool/org/apache/httpcomponents/httpcore/4.2.2/httpcore-4.2.2.jar!/org/apache/http/HttpStatus.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="10" column="8" lean-forward="false" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4">
+          <caret line="64" column="13" lean-forward="false" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/Consumer/Offset.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="117" column="58" lean-forward="false" selection-start-line="117" selection-start-column="58" selection-end-line="117" selection-end-column="58" />
+        <state relative-caret-position="131">
+          <caret line="91" column="41" lean-forward="false" selection-start-line="91" selection-start-column="41" selection-end-line="91" selection-end-column="41" />
           <folding>
             <element signature="e#1467#1468#0" expanded="true" />
             <element signature="e#1511#1512#0" expanded="true" />
@@ -1419,8 +1256,38 @@
     <entry file="file://$PROJECT_DIR$/target/classes/offset.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="81">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/java1.8/jdk1.8/src.zip!/java/io/PrintStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="800" column="6" lean-forward="true" selection-start-line="800" selection-start-column="6" selection-end-line="801" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/start/HttpRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="60" column="4" lean-forward="false" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="4" />
+          <folding>
+            <element signature="method#main#0;class#HttpRequest#0" expanded="false" />
+            <element signature="method#dealReq#0;class#HttpRequest#0" expanded="false" />
+            <element signature="method#getMessage#0;class#HttpRequest#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/thread2/start/Start.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+          <folding>
+            <element signature="class#ReqHandler#0;class#Start#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

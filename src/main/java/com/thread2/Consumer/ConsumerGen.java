@@ -43,9 +43,6 @@ public class ConsumerGen {
                 ConsumerRecords<String, String> records = consumer.poll(1000);  //Consumer到kafka拉取消息,每隔一秒拉取一次
                 System.out.println("本次拉取到的数据有:" + records.count()+"条");
                 log.info("获取到的数据有[{}]条", records.count());
-                for(ConsumerRecord<String,String> record : records){
-                    System.out.println(record.partition()+":"+record.offset()+":"+record.value());
-                }
                 if(!records.isEmpty()){
                     executor.submit(new ConsumerHandler(records,offsetQueue));  //将该次获取的记录提交给线程池中ConsumerHandler类型的线程去处理
                 }

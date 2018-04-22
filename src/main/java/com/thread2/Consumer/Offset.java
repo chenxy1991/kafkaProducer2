@@ -76,8 +76,7 @@ public class Offset{
         for (ConsumerRecord<String, String> record : partitionRecords) {
             recordList.add(record.value()+"&"+record.offset());
         }
-        System.out.println(Thread.currentThread().getName() + "获取数据" + recordList.size() + "条");
-        System.out.println(Thread.currentThread().getName() + "获取的记录的offset初始值为" + offset.getInitOffset() + ",最后一条记录的偏移值为" + offset.getLastOffset());
+        System.out.println(Thread.currentThread().getName() + "获取数据" + recordList.size() + "条"+",记录的offset初始值为" + offset.getInitOffset() + ",最后一条记录的偏移值为" + offset.getLastOffset());
         recordsAndOffset.put(recordList,offset);
         return recordsAndOffset;
     }
@@ -118,7 +117,6 @@ public class Offset{
         commitMap.put(partition, commitOffsetAndMetadata);
         consumer.commitSync(commitMap);
         return commitMap;
-       // Utils.saveToFile(commitMap, "offset.txt");
     }
 
 }

@@ -35,9 +35,7 @@ public class ConsumerHandler implements Runnable {
             Map<List<String>,Offset> recordMap = offset.getRecordListAndOffset(records,partition); //获取<records，Offset>的map
             for(List<String> recordList:recordMap.keySet()) {
                 try {
-                    //isDone.set(DBOperation.getInstance().InsertToInfluxDB(recordList)); //将该批记录插入时序数据库
                     isDone.set(DBOperation.getInstance().InsertToInfluxDB(recordMap));
-                    //DBOperation.getInstance().InsertToInfluxDB(recordList);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

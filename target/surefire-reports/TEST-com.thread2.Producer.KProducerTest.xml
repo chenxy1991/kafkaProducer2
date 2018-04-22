@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="com.thread2.Producer.KProducerTest" time="0.362" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="com.thread2.Producer.KProducerTest" time="0.491" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2017.3"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -49,7 +49,7 @@
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="zh"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
-    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vm.info" value="mixed mode"/>
     <property name="java.version" value="1.8.0_91"/>
     <property name="java.ext.dirs" value="D:\java1.8\jdk1.8\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
     <property name="sun.boot.class.path" value="D:\java1.8\jdk1.8\jre\lib\resources.jar;D:\java1.8\jdk1.8\jre\lib\rt.jar;D:\java1.8\jdk1.8\jre\lib\sunrsasign.jar;D:\java1.8\jdk1.8\jre\lib\jsse.jar;D:\java1.8\jdk1.8\jre\lib\jce.jar;D:\java1.8\jdk1.8\jre\lib\charsets.jar;D:\java1.8\jdk1.8\jre\lib\jfr.jar;D:\java1.8\jdk1.8\jre\classes"/>
@@ -62,5 +62,5 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
   </properties>
-  <testcase classname="com.thread2.Producer.KProducerTest" name="testSetUp" time="0.362"/>
+  <testcase classname="com.thread2.Producer.KProducerTest" name="testSetUp" time="0.491"/>
 </testsuite>
