@@ -15,7 +15,7 @@ public class ConsumerGen {
 
     private final Consumer<String, String> consumer;
     private ExecutorService executor;
-    private String topic;
+    private String[] topic;
     private Logger log = LoggerFactory.getLogger("ConsumerLog");
     InfluxDB influxDB;
     AtomicBoolean isRunning;
@@ -24,8 +24,8 @@ public class ConsumerGen {
     Map<TopicPartition,Map<TopicPartition, OffsetAndMetadata>> saveMap =new HashMap<>();
     final long awaitTime = 5 * 1000;
 
-    public ConsumerGen(String topic, InfluxDB influxDB, Consumer<String, String> consumer) {
-        this.topic = topic;
+    public ConsumerGen(String[] topics, InfluxDB influxDB, Consumer<String, String> consumer) {
+        this.topic = topics;
         this.influxDB = influxDB;
         this.consumer = consumer;
         this.offset = new Offset(consumer);
@@ -68,33 +68,36 @@ public class ConsumerGen {
         System.out.println("进入commitOffsets方法...");
         log.info("进入commitOffsets方法...");
         long finalOffset = 0L,minOffset = 0L;
-        List<PartitionInfo> partitionInfos = consumer.partitionsFor(topic);   //获取topic对应的所有partition的信息
         List<Offset> commitList = new ArrayList<Offset>();
-        for (PartitionInfo s : partitionInfos) {
-            TopicPartition partition = new TopicPartition(topic, s.partition());
-            System.out.println("现在处理的是partition:"+partition.partition());
-            log.info("现在处理的是partition[{}]:",partition.partition());
-            if (lastCommited.get(partition) == null) {
-                finalOffset = offset.getLastCommited(partition);             //获取上次该partition提交的offset
-            } else {
-                finalOffset = lastCommited.get(partition);
-            }
-            log.info("partition[{}]上次提交的lastCommited是[{}]:",partition.partition(),finalOffset);
-            if (force.equals(true)) {                                       //若force为true，表示出现了exception，则将当前队列中的所有元素进行处理，遍历offsetQueue，将所有相同的partition中对应的offset取最小值进行提交
-                minOffset = offset.getMinOffset(partition, offsetQueue);
-                saveMap.put(partition,offset.commitOffset(partition,minOffset));
-                lastCommited.put(partition, minOffset);
-            } else {
-                if (offsetQueue.size() >= 2) {                              //若force为false，则当offsetQueue大小超过2时处理一次
-                    finalOffset = dealOffsetQueue(partition, commitList, offsetQueue, finalOffset);
-                    saveMap.put(partition,offset.commitOffset(partition, finalOffset));
-                    System.out.println("saveList的大小为："+saveMap.size()+",当前saveList为："+saveMap.toString());
-                    lastCommited.put(partition,finalOffset);
-                    commitList.clear();
+        for(String topic : topic) {
+            List<PartitionInfo> partitionInfos = consumer.partitionsFor(topic);   //获取topic对应的所有partition的信息
+            for (PartitionInfo s : partitionInfos) {
+                TopicPartition partition = new TopicPartition(topic, s.partition());
+                System.out.println("现在处理的是partition:" + partition.partition());
+                log.info("现在处理的是partition[{}]:", partition.partition());
+                if (lastCommited.get(partition) == null) {
+                    finalOffset = offset.getLastCommited(partition);             //获取上次该partition提交的offset
+                } else {
+                    finalOffset = lastCommited.get(partition);
+                }
+                log.info("partition[{}]上次提交的lastCommited是[{}]:", partition.partition(), finalOffset);
+                if (force.equals(true)) {                                       //若force为true，表示出现了exception，则将当前队列中的所有元素进行处理，遍历offsetQueue，将所有相同的partition中对应的offset取最小值进行提交
+                    minOffset = offset.getMinOffset(partition, offsetQueue);
+                    saveMap.put(partition, offset.commitOffset(partition, minOffset));
+                    lastCommited.put(partition, minOffset);
+                } else {
+                    if (offsetQueue.size() >= 2) {                              //若force为false，则当offsetQueue大小超过2时处理一次
+                        finalOffset = dealOffsetQueue(partition, commitList, offsetQueue, finalOffset);
+                        saveMap.put(partition, offset.commitOffset(partition, finalOffset));
+                        System.out.println("saveList的大小为：" + saveMap.size() + ",当前saveList为：" + saveMap.toString());
+                        lastCommited.put(partition, finalOffset);
+                        commitList.clear();
+                    }
                 }
             }
+            Utils.saveToFile(saveMap, "offset.txt");
         }
-        Utils.saveToFile(saveMap, "offset.txt");
+
     }
 
     public long dealOffsetQueue(TopicPartition partition, List<Offset> commitList,LinkedBlockingQueue<Offset> offsetQueue,long finalOffset){

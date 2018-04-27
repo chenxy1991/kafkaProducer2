@@ -40,6 +40,7 @@ public class HttpRequest {
                 if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                     String strResult = EntityUtils.toString(response.getEntity());
                     messages=getMessage(strResult);
+                    System.out.println("这是第"+count+"次拉取数据，拉取数据的条数为"+messages.size());
                     dealReq(messages);
                     count++;
                 }

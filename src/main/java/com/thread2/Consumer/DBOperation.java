@@ -24,12 +24,13 @@ public class DBOperation {
 
     public static BatchPoints batchPoints = null;
     private InfluxDB influxDB = null;
-    public static String dbName = "cxy";
+    private String dbName = null;
     private Logger log = LoggerFactory.getLogger("ConsumerLog");
 
     //单例模式获取influxDB连接
     private DBOperation() {
         influxDB = connectDB(3,"db.properties");
+        dbName = getDbName("db.properties");
     }
 
     private static class DBOperationHolder {
@@ -115,14 +116,17 @@ public class DBOperation {
         String[] metricArray=record.substring(clusterIndex,lastindex-1).split(",");
         Map<String,String> map=new HashMap<String,String>();
         map.put(cluster,clusterValue);
+        String meansurement = null;
         for(int i=0;i<metricArray.length;i++) {
             System.out.println(metricArray[i]);
             String tagName = metricArray[i].split("=")[0];
             String tagValue = metricArray[i].split("=")[1];
             if(!tagName.equals("metricName"))
                 map.put(tagName,tagValue);
+            else
+                meansurement = tagValue;
         }
-         Point point1 = Point.measurement("cput")
+         Point point1 = Point.measurement(meansurement)
                 .time(TimeUnit.NANOSECONDS.toNanos(tt), TimeUnit.NANOSECONDS)
                 .tag(map)
                 .addField("value", metricValue)
@@ -186,5 +190,10 @@ public class DBOperation {
     public String getInfluxDBUrl(String propsFile) {
         Properties props = Utils.getProperties(propsFile);
         return props.get("url").toString();
+    }
+
+    public String getDbName(String propsFile) {
+        Properties props = Utils.getProperties(propsFile);
+        return props.get("dbname").toString();
     }
 }
