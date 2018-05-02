@@ -4,6 +4,7 @@ import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.OffsetAndMetadata;
+import org.apache.kafka.common.PartitionInfo;
 import org.apache.kafka.common.TopicPartition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +28,8 @@ public class Offset{
     private long lastOffset;
     private TopicPartition partition;
     private Consumer<String, String> consumer;
+    Map<TopicPartition, Long> lastCommited = new HashMap<>();
+    Map<TopicPartition,Map<TopicPartition, OffsetAndMetadata>> saveMap =new HashMap<>();
     private Logger log = LoggerFactory.getLogger("ConsumerLog");
 
 
@@ -118,5 +121,66 @@ public class Offset{
         consumer.commitSync(commitMap);
         return commitMap;
     }
+
+    public void updateOffsetByTopic(Boolean force,String topic,LinkedBlockingQueue<Offset> offsetQueue){
+        long finalOffset = 0L,minOffset = 0L;
+        List<Offset> commitList = new ArrayList<Offset>();
+        List<PartitionInfo> partitionInfos = consumer.partitionsFor(topic);   //获取topic对应的所有partition的信息
+        for (PartitionInfo s : partitionInfos) {
+            TopicPartition partition = new TopicPartition(topic, s.partition());
+            System.out.println("现在处理的是partition:" + partition.partition());
+            log.info("现在处理的是partition[{}]:", partition.partition());
+            if (lastCommited.get(partition) == null) {
+                finalOffset = getLastCommited(partition);             //获取上次该partition提交的offset
+            } else {
+                finalOffset = lastCommited.get(partition);
+            }
+            log.info("partition[{}]上次提交的lastCommited是[{}]:", partition.partition(), finalOffset);
+            if (force.equals(true)) {                                       //若force为true，表示出现了exception，则将当前队列中的所有元素进行处理，遍历offsetQueue，将所有相同的partition中对应的offset取最小值进行提交
+                minOffset = getMinOffset(partition, offsetQueue);
+                saveMap.put(partition, commitOffset(partition, minOffset));
+                lastCommited.put(partition, minOffset);
+            } else {
+                if (offsetQueue.size() >= 2) {                              //若force为false，则当offsetQueue大小超过2时处理一次
+                    finalOffset = dealOffsetQueue(partition, commitList, offsetQueue, finalOffset);
+                    saveMap.put(partition, commitOffset(partition, finalOffset));
+                    System.out.println("saveList的大小为：" + saveMap.size() + ",当前saveList为：" + saveMap.toString());
+                    lastCommited.put(partition, finalOffset);
+                    commitList.clear();
+                }
+            }
+        }
+        Utils.saveToFile(saveMap, "offset.txt");
+    }
+
+    public long dealOffsetQueue(TopicPartition partition, List<Offset> commitList,LinkedBlockingQueue<Offset> offsetQueue,long finalOffset){
+        long initOffset = 0L,lastOffset = 0L;
+        while (!offsetQueue.isEmpty()) {
+            System.out.println("当前offsetQueue的大小是：" + offsetQueue.size());
+            log.info("当前offsetQueue的大小是[{}]", offsetQueue.size());
+            Offset offsets = offsetQueue.poll();
+            System.out.println("poll后offsetQueue的大小是:" + offsetQueue.size());
+            log.info("poll后offsetQueue的大小是[{}]", offsetQueue.size());
+            if (offsets.getPartition().partition() == partition.partition()) {
+                initOffset = offsets.getInitOffset();
+                lastOffset = offsets.getLastOffset();
+                System.out.println("当前处理的partition是"+partition.partition()+",initoffset是：" + initOffset + ",lastoffset是：" + lastOffset);
+                log.info("当前处理的partition是[{}],initoffset是[{}],lastoffset是[{}]", partition.partition(),initOffset, lastOffset);
+                if (initOffset == finalOffset || initOffset == finalOffset + 1) {     //遍历当前offsetQueue，将当前元素的初始值和当前partition上次提交的位移进行比较，若相等，将lastOffset设置为此次要提交的offset，直到不相等
+                    System.out.println("true");
+                    finalOffset = lastOffset;
+                } else if (lastOffset < finalOffset) {          //若当前元素的lastoffset已经小于已提交的offset，则在offsetQueue中删除该元素
+                    offsetQueue.remove(offsets);
+                } else {
+                    commitList.add(offsets);      //否则放到提交队列中，等待下一轮处理
+                }
+            } else {
+                commitList.add(offsets);
+            }
+        }
+        offsetQueue.addAll(commitList);
+        return finalOffset;
+    }
+
 
 }
