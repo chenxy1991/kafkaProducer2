@@ -1,11 +1,6 @@
 package com.thread2.Consumer;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import org.apache.commons.jexl2.Expression;
-import org.apache.commons.jexl2.JexlContext;
-import org.apache.commons.jexl2.JexlEngine;
-import org.apache.commons.jexl2.MapContext;
+import com.thread2.Utils.Utils;
 import org.influxdb.InfluxDB;
 import org.influxdb.InfluxDBFactory;
 import org.influxdb.dto.*;
@@ -45,6 +40,11 @@ public class DBOperation {
         return influxDB;
     }
 
+    public String getDbName() {
+        return dbName;
+    }
+
+
     //插入influxDB
     /*public synchronized boolean InsertToInfluxDB(List<String> records) throws Exception {
         Boolean isDone = false;
@@ -80,11 +80,11 @@ public class DBOperation {
         long offset = 0l;
         loop:for(List<String> recordList:recordMap.keySet()) {
                for (String content : recordList) {
-                 System.out.println(recordList.size());
                  message = content.split("&")[0];
                  offset = Long.parseLong(content.split("&")[1]);
                  Point point1 = ConstructPoints(message);
                  System.out.println(Thread.currentThread().getName()+"当前处理的记录的offset为:"+offset+",记录为"+point1.toString());
+                 log.info(Thread.currentThread().getName()+"当前处理的记录的offset为:[{}],记录为[{}]",offset,point1.toString());
                  try {
                      //写入influxdb
                     influxDB.write(dbName,"autogen",point1);
@@ -109,7 +109,6 @@ public class DBOperation {
         String cluster = record.substring(0,clusterIndex-1).split("=")[0];
         String clusterValue = record.substring(0,clusterIndex-1).split("=")[1];
 
-        System.out.println(cluster+":"+clusterValue);
         String time = record.substring(lastindex + 1, record.length() - 1).split(",")[0];
         String metricValue = record.substring(lastindex + 1, record.length() - 1).split(",")[1];
         long tt = transform(time);
@@ -118,7 +117,6 @@ public class DBOperation {
         map.put(cluster,clusterValue);
         String meansurement = null;
         for(int i=0;i<metricArray.length;i++) {
-            System.out.println(metricArray[i]);
             String tagName = metricArray[i].split("=")[0];
             String tagValue = metricArray[i].split("=")[1];
             if(!tagName.equals("metricName"))

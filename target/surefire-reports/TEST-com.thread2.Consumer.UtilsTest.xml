@@ -30,7 +30,7 @@
     <property name="os.name" value="Windows 10"/>
     <property name="classworlds.conf" value="D:\D盘\maven\apache-maven-3.3.9\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="GBK"/>
-    <property name="java.library.path" value="D:\java1.8\jdk1.8\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;D:\java1.8\jdk1.8\bin;D:\java1.8\jdk1.8\jre\bin;C:\ProgramData\Oracle\Java\javapath;D:\python36\;D:\python36\Scripts;D:\python27\;D:\python27\Scripts;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;c:\Program Files\Intel\WiFi\bin\;c:\Program Files\Common Files\Intel\WirelessCommon\;D:\tomcat\apache-tomcat-7.0.8\bin;D:\Git\Git\cmd;D:\python36\Scripts\;D:\python36\;C:\Users\admin1\AppData\Local\Microsoft\WindowsApps;;."/>
+    <property name="java.library.path" value="D:\java1.8\jdk1.8\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;D:\java1.8\jdk1.8\bin;D:\java1.8\jdk1.8\jre\bin;C:\ProgramData\Oracle\Java\javapath;D:\python36\;D:\python36\Scripts;D:\python27\;D:\python27\Scripts;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;c:\Program Files\Intel\WiFi\bin\;c:\Program Files\Common Files\Intel\WirelessCommon\;D:\tomcat\apache-tomcat-7.0.8\bin;D:\Git\Git\cmd;D:\c++\bin;D:\python36\Scripts\;D:\python36\;C:\Users\admin1\AppData\Local\Microsoft\WindowsApps;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot Client Compiler"/>
@@ -49,7 +49,7 @@
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="zh"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
-    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
     <property name="java.version" value="1.8.0_91"/>
     <property name="java.ext.dirs" value="D:\java1.8\jdk1.8\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
     <property name="sun.boot.class.path" value="D:\java1.8\jdk1.8\jre\lib\resources.jar;D:\java1.8\jdk1.8\jre\lib\rt.jar;D:\java1.8\jdk1.8\jre\lib\sunrsasign.jar;D:\java1.8\jdk1.8\jre\lib\jsse.jar;D:\java1.8\jdk1.8\jre\lib\jce.jar;D:\java1.8\jdk1.8\jre\lib\charsets.jar;D:\java1.8\jdk1.8\jre\lib\jfr.jar;D:\java1.8\jdk1.8\jre\classes"/>

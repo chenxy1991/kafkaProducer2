@@ -1,14 +1,11 @@
 package com.thread2.Consumer;
 
+import com.thread2.Utils.Utils;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.influxdb.InfluxDB;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Properties;
 
 //consumer启动类
 public class ConsumerMain {

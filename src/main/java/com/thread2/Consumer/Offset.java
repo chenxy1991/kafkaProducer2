@@ -1,5 +1,6 @@
 package com.thread2.Consumer;
 
+import com.thread2.Utils.Utils;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -9,7 +10,6 @@ import org.apache.kafka.common.TopicPartition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -80,6 +80,7 @@ public class Offset{
             recordList.add(record.value()+"&"+record.offset());
         }
         System.out.println(Thread.currentThread().getName() + "获取数据" + recordList.size() + "条"+",记录的offset初始值为" + offset.getInitOffset() + ",最后一条记录的偏移值为" + offset.getLastOffset());
+        log.info(Thread.currentThread().getName() + "获取数据[{}]条,记录的offset初始值为[{}],最后一条记录的偏移值为[{}]",recordList.size(),offset.getInitOffset(),offset.getLastOffset());
         recordsAndOffset.put(recordList,offset);
         return recordsAndOffset;
     }
@@ -91,6 +92,7 @@ public class Offset{
         if (offsetAndMetadata != null) {
             finalOffset = offsetAndMetadata.offset();
             System.out.println("partition"+partition.partition()+"上次提交的offset是：" + finalOffset);
+            log.info("partition[{}]上次提交的offset是[{}]",partition.partition(),finalOffset);
         } else {
             finalOffset = Utils.readFromFile(partition,"offset.txt");
         }
@@ -103,7 +105,6 @@ public class Offset{
         for (Offset offsets : offsetQueue) {
             if(offsets.getPartition().equals(partition)){
                 lastOffset = offsets.getLastOffset();
-                System.out.println("lastoffset是：" + lastOffset);
                 if (lastOffset < minOffset)
                     minOffset = lastOffset;
             }
@@ -145,6 +146,7 @@ public class Offset{
                     finalOffset = dealOffsetQueue(partition, commitList, offsetQueue, finalOffset);
                     saveMap.put(partition, commitOffset(partition, finalOffset));
                     System.out.println("saveList的大小为：" + saveMap.size() + ",当前saveList为：" + saveMap.toString());
+                    log.info("saveList的大小为[{}],当前saveList为[{}]",saveMap.size(),saveMap.toString());
                     lastCommited.put(partition, finalOffset);
                     commitList.clear();
                 }

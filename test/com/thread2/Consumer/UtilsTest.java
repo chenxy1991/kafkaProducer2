@@ -1,5 +1,6 @@
 package com.thread2.Consumer;
 
+import com.thread2.Utils.Utils;
 import junit.framework.TestCase;
 
 public class UtilsTest extends TestCase {
