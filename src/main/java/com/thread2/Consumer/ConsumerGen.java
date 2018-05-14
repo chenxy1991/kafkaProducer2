@@ -39,7 +39,6 @@ public class ConsumerGen {
         while (isRunning.get()) {
             try {
                 ConsumerRecords<String, String> records = consumer.poll(1000);  //Consumer到kafka拉取消息,每隔一秒拉取一次
-                System.out.println("本次拉取到的数据有:" + records.count()+"条");
                 log.info("获取到的数据有[{}]条", records.count());
                 if(!records.isEmpty()){
                     executor.submit(new ConsumerHandler(records,offsetQueue));  //将该次获取的记录提交给线程池中ConsumerHandler类型的线程去处理
@@ -63,7 +62,6 @@ public class ConsumerGen {
  */
 
       void commitOffsets(Boolean force, LinkedBlockingQueue<Offset> offsetQueue) {
-          System.out.println("进入commitOffsets方法...");
           log.info("进入commitOffsets方法...");
           for(String topic : topic) {
               offset.updateOffsetByTopic(force,topic,offsetQueue);
@@ -72,7 +70,6 @@ public class ConsumerGen {
 
     //关闭程序
     public void shutdown() {
-        System.out.println("consumerGen正在关闭。。。");
         log.info("consumerGen正在关闭。。。");
         try {
             executor.shutdown();
@@ -80,7 +77,7 @@ public class ConsumerGen {
                 executor.shutdownNow();
             }
         } catch (InterruptedException e) {
-            System.out.println("awaitTermination interrupted: " + e);
+            log.info("awaitTermination interrupted:[{}]" + e);
             executor.shutdownNow();
         } finally {
             influxDB.close();

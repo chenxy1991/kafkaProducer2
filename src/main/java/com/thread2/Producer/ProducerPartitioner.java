@@ -14,7 +14,6 @@ public class ProducerPartitioner implements Partitioner {
     public int partition(String s, Object o, byte[] bytes, Object o1, byte[] bytes1, Cluster cluster) {
        String timestamp = o.toString().split("_")[0];  //o是消息，object类型要先转换为String类型
        Double time=Double.parseDouble(timestamp);
-       System.out.println(time.longValue());
        int numPartition=cluster.partitionCountForTopic(s);   //s是topic
        return (int)(time % numPartition);
     }

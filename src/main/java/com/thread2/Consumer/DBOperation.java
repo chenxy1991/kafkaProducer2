@@ -83,13 +83,12 @@ public class DBOperation {
                  message = content.split("&")[0];
                  offset = Long.parseLong(content.split("&")[1]);
                  Point point1 = ConstructPoints(message);
-                 System.out.println(Thread.currentThread().getName()+"当前处理的记录的offset为:"+offset+",记录为"+point1.toString());
                  log.info(Thread.currentThread().getName()+"当前处理的记录的offset为:[{}],记录为[{}]",offset,point1.toString());
                  try {
                      //写入influxdb
                     influxDB.write(dbName,"autogen",point1);
                  } catch (Exception e) {
-                     System.out.println("出错啦！");
+                     log.info("出错啦！");
                      e.printStackTrace();
                     try {
                         influxDB.write(point1);
@@ -174,10 +173,8 @@ public class DBOperation {
         influxDB = InfluxDBFactory.connect(url);
         Pong pong = influxDB.ping();
         if (pong != null) {
-            System.out.println("pong:" + pong + ",influxDB数据库连接成功");
             log.info("[{}],influxDB数据库连接成功", pong);
         } else {
-            System.out.println("influxDB数据库连接失败");
             log.info("influxDB数据库连接失败");
             throw new SQLException("influxDB数据库连接失败");
         }

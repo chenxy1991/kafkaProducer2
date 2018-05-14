@@ -22,28 +22,23 @@ public class CountProcessor implements Processor<String, String> {
         this.context = processorContext;
         this.context.schedule(10000);
         this.kcStore = (KeyValueStore) context.getStateStore("countStore");
-        System.out.println("开始调用CountProcessor。。。。");
         log.info("开始调用CountProcessor。。。。");
     }
 
     //s为key，s2为value
     @Override
     public void process(String s, String s2) {
-        System.out.println("这个CountProcessor对应处理"+context.topic()+"的第"+context.partition()+"的offset为"+context.offset()+"的记录");
         log.info("这个CountProcessor对应处理topic为[{}]的partition[{}]的offset为[{}]的记录",context.topic(),context.partition(),context.offset());
         //获取聚合指标
         String key=Utils.getKey(s);
         String v= (String) this.kcStore.get(key);
         if(v == null){
-            System.out.println("本地状态库中不存在对应的聚合指标:"+ key +","+"v:"+ v );
             log.info("本地状态库中不存在对应的聚合指标 key[{}],value[{}]",key,v);
             this.kcStore.put(key,"1");
         }else{
-            System.out.println("本地状态库中已有"+ key +",当前值v为："+v+",当前已有的记录数为："+this.kcStore.get(key).toString());
             log.info("本地状态库中已有key[{}],当前值v为[{}],当前已有的记录数为[{}]：",key,v,this.kcStore.get(key).toString());
             int count=Integer.parseInt(this.kcStore.get(key).toString())+1;
             this.kcStore.put(key,String.valueOf(count));
-            System.out.println("处理后的记录数为："+this.kcStore.get(key).toString());
             log.info("处理后的记录数为[{}]",this.kcStore.get(key).toString());
         }
     }

@@ -29,7 +29,6 @@ public class KProducer {
             String topic = message.getMetricName();
             long time = new BigDecimal(timestamp).multiply(new BigDecimal(1000)).longValue();
             String key = time + "_" + tags;
-            System.out.println("key:"+key+",topic="+topic);
             log.info("message的key=[{}],topic=[{}]",key,topic);
 
             //调用producer的send方法发送key为timestamp+tags的record，s为消息
@@ -38,9 +37,7 @@ public class KProducer {
                     if (e != null) {
                         e.printStackTrace();
                     } else {
-                        System.out.println("The offset of the record we just sent is: " + metadata.offset());
-                        log.info("The offset of the record we just sent is:[{}]", metadata.offset());
-                        System.out.println(String.format("partition = %s, offset = %d", metadata.partition(), metadata.offset()));
+                        log.info("The offset of the record we just sent is:[{}],the partition of the record is partition[{}]", metadata.offset(),metadata.partition());
                     }
                 }
             });

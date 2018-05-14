@@ -4,6 +4,8 @@ import ch.qos.logback.core.encoder.EchoEncoder;
 import com.thread2.Consumer.ConsumerGen;
 
 import java.io.*;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -12,6 +14,7 @@ public class MyThread implements Runnable {
 
     //private ThreadLocal<Integer> i = new ThreadLocal<>();
     AtomicBoolean isDone = new AtomicBoolean(false);
+
 
     @Override
     public void run() {
@@ -54,7 +57,7 @@ public class MyThread implements Runnable {
         dealWith(commitMap);
 
         System.out.println(commitMap.get(2));*/
-        int j=4;
+        /*int j=4;
         for(int i=0;i<3;i++){
             try {
                 int a = 1 / j;
@@ -62,7 +65,7 @@ public class MyThread implements Runnable {
             }catch(Exception e){
                 e.printStackTrace();
             }
-        }
+        }*/
 
        /* MyThread[] mts = new MyThread[3];
         for (int i = 0; i < mts.length; i++) {
@@ -77,6 +80,11 @@ public class MyThread implements Runnable {
             System.out.println("cxy");
         }*/
        // readFromFile(1,"/offset.txt");
+
+      //BigDecimal bigDecimal =new BigDecimal(1);
+      //BigDecimal bigDecimal =new BigDecimal(1);
+
+        System.out.println(BigDecimal.valueOf(4.55f));
     }
 
     public static void dealWith(Map<Integer, String> commitMap){

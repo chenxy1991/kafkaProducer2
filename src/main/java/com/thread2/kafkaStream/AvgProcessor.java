@@ -22,13 +22,11 @@ public class AvgProcessor implements Processor<String, String> {
         this.context = processorContext;
         this.context.schedule(10000);
         this.avgStore = (KeyValueStore) context.getStateStore("avgStore");
-        System.out.println("开始调用AvgProcessor。。。");
         log.info("开始调用AvgProcessor。。。");
     }
 
     @Override
     public void process(String s, String s2) {
-        System.out.println("这个AvgProcessor对应处理"+context.topic()+"的第"+context.partition()+"的offset为"+context.offset()+"的记录");
         log.info("这个AvgProcessor对应处理topic为[{}]的partition[{}]的offset为[{}]的记录",context.topic(),context.partition(),context.offset());
         String key=Utils.getKey(s);
         String value=s2.split("\\[")[1].split(",")[1].split("\"")[1];

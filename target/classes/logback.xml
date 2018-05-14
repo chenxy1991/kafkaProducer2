@@ -58,14 +58,17 @@
 
     <logger name="ConsumerLog" level="INFO" additivity="false" >
         <appender-ref ref="ConsumerLogAppender"/>
+        <appender-ref ref="STDOUT" />
     </logger>
 
     <logger name="ProducerLog" level="INFO" additivity="false" >
         <appender-ref ref="ProducerLogAppender"/>
+        <appender-ref ref="STDOUT" />
     </logger>
 
     <logger name="kafkaStreamLog" level="INFO" additivity="false" >
         <appender-ref ref="KafkaStreamLogAppender"/>
+        <appender-ref ref="STDOUT" />
     </logger>
 
 </configuration>

@@ -26,14 +26,12 @@ public class SpreadProcessor implements Processor<String, String> {
         this.context.schedule(1000);
         this.minStore = (KeyValueStore) context.getStateStore("minStore");
         this.maxStore = (KeyValueStore) context.getStateStore("maxStore");
-        System.out.println("开始调用SpreadProcessor。。。。");
         log.info("开始调用SpreadProcessor。。。。");
     }
 
     @Override
     public void process(String s, String s2) {
 
-        System.out.println("这个SpreadProcessor对应处理"+context.topic()+"的第"+context.partition()+"的offset为"+context.offset()+"的记录");
         log.info("这个SpreadProcessor对应处理topic为[{}]的partition为[{}]的offset为[{}]的记录",context.topic(),context.partition(),context.offset());
 
         String key=Utils.getKey(s);

@@ -79,7 +79,6 @@ public class Offset{
         for (ConsumerRecord<String, String> record : partitionRecords) {
             recordList.add(record.value()+"&"+record.offset());
         }
-        System.out.println(Thread.currentThread().getName() + "获取数据" + recordList.size() + "条"+",记录的offset初始值为" + offset.getInitOffset() + ",最后一条记录的偏移值为" + offset.getLastOffset());
         log.info(Thread.currentThread().getName() + "获取数据[{}]条,记录的offset初始值为[{}],最后一条记录的偏移值为[{}]",recordList.size(),offset.getInitOffset(),offset.getLastOffset());
         recordsAndOffset.put(recordList,offset);
         return recordsAndOffset;
@@ -91,7 +90,6 @@ public class Offset{
         OffsetAndMetadata offsetAndMetadata = consumer.committed(partition);
         if (offsetAndMetadata != null) {
             finalOffset = offsetAndMetadata.offset();
-            System.out.println("partition"+partition.partition()+"上次提交的offset是：" + finalOffset);
             log.info("partition[{}]上次提交的offset是[{}]",partition.partition(),finalOffset);
         } else {
             finalOffset = Utils.readFromFile(partition,"offset.txt");
@@ -115,8 +113,7 @@ public class Offset{
     //将当前消费到的offset进行提交
     public Map<TopicPartition,OffsetAndMetadata> commitOffset(TopicPartition partition,long commitOffset){
         OffsetAndMetadata commitOffsetAndMetadata = new OffsetAndMetadata(commitOffset + 1);
-        System.out.println("此次要提交的partition是"+ partition.partition()+",offset是:" + commitOffset);
-        log.info("partition[{}]此次要提交的offset是:",partition.partition(),commitOffset);
+        log.info("partition[{}]此次要提交的offset是[{}]:",partition.partition(),commitOffset);
         Map<TopicPartition, OffsetAndMetadata> commitMap = new HashMap<>();
         commitMap.put(partition, commitOffsetAndMetadata);
         consumer.commitSync(commitMap);
@@ -129,7 +126,6 @@ public class Offset{
         List<PartitionInfo> partitionInfos = consumer.partitionsFor(topic);   //获取topic对应的所有partition的信息
         for (PartitionInfo s : partitionInfos) {
             TopicPartition partition = new TopicPartition(topic, s.partition());
-            System.out.println("现在处理的是partition:" + partition.partition());
             log.info("现在处理的是partition[{}]:", partition.partition());
             if (lastCommited.get(partition) == null) {
                 finalOffset = getLastCommited(partition);             //获取上次该partition提交的offset
@@ -145,7 +141,6 @@ public class Offset{
                 if (offsetQueue.size() >= 2) {                              //若force为false，则当offsetQueue大小超过2时处理一次
                     finalOffset = dealOffsetQueue(partition, commitList, offsetQueue, finalOffset);
                     saveMap.put(partition, commitOffset(partition, finalOffset));
-                    System.out.println("saveList的大小为：" + saveMap.size() + ",当前saveList为：" + saveMap.toString());
                     log.info("saveList的大小为[{}],当前saveList为[{}]",saveMap.size(),saveMap.toString());
                     lastCommited.put(partition, finalOffset);
                     commitList.clear();
@@ -158,18 +153,15 @@ public class Offset{
     public long dealOffsetQueue(TopicPartition partition, List<Offset> commitList,LinkedBlockingQueue<Offset> offsetQueue,long finalOffset){
         long initOffset = 0L,lastOffset = 0L;
         while (!offsetQueue.isEmpty()) {
-            System.out.println("当前offsetQueue的大小是：" + offsetQueue.size());
             log.info("当前offsetQueue的大小是[{}]", offsetQueue.size());
             Offset offsets = offsetQueue.poll();
-            System.out.println("poll后offsetQueue的大小是:" + offsetQueue.size());
             log.info("poll后offsetQueue的大小是[{}]", offsetQueue.size());
             if (offsets.getPartition().partition() == partition.partition()) {
                 initOffset = offsets.getInitOffset();
                 lastOffset = offsets.getLastOffset();
-                System.out.println("当前处理的partition是"+partition.partition()+",initoffset是：" + initOffset + ",lastoffset是：" + lastOffset);
                 log.info("当前处理的partition是[{}],initoffset是[{}],lastoffset是[{}]", partition.partition(),initOffset, lastOffset);
                 if (initOffset == finalOffset || initOffset == finalOffset + 1) {     //遍历当前offsetQueue，将当前元素的初始值和当前partition上次提交的位移进行比较，若相等，将lastOffset设置为此次要提交的offset，直到不相等
-                    System.out.println("true");
+                    log.info("true");
                     finalOffset = lastOffset;
                 } else if (lastOffset < finalOffset) {          //若当前元素的lastoffset已经小于已提交的offset，则在offsetQueue中删除该元素
                     offsetQueue.remove(offsets);

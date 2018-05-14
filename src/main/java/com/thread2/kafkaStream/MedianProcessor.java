@@ -6,6 +6,8 @@ import org.apache.kafka.streams.processor.Processor;
 import org.apache.kafka.streams.processor.ProcessorContext;
 import org.apache.kafka.streams.state.KeyValueIterator;
 import org.apache.kafka.streams.state.KeyValueStore;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -17,13 +19,14 @@ public class MedianProcessor implements Processor<String, String> {
 
     private ProcessorContext context;
     private KeyValueStore medianStore;
+    private Logger log = LoggerFactory.getLogger("kafkaStreamLog");
 
     @Override
     public void init(ProcessorContext processorContext) {
         this.context = processorContext;
         this.context.schedule(10000);
         this.medianStore = (KeyValueStore) context.getStateStore("medianStore");
-        System.out.println("开始调用MedianProcessor。。。");
+        log.info("开始调用MedianProcessor。。。");
     }
 
     @Override
